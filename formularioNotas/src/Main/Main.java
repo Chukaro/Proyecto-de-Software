@@ -5,7 +5,7 @@ import Presentation.Login;
 public class Main {
 
 	public static void main(String[] args) {
-		//Se Inicia el programa desde aqui
+		//Se Inicia el programa desde aqui er
 		Login window = new Login();
 		window.getFrame().setVisible(true);
 
