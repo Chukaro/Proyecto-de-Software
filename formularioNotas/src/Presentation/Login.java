@@ -62,30 +62,23 @@ public class Login {
 		btnIngreso.setBackground(Color.WHITE);
 		btnIngreso.setIcon(new ImageIcon(Login.class.getResource("/Imagenes/check.png")));
 		btnIngreso.setForeground(Color.BLUE);
+		
 		btnIngreso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String usuario = txtUsuario.getText();
-				String pass = txtPassword.getText();
+				//asi se recupera el campo text password
+				char[] pass = txtPassword.getPassword();
+				String pass1 = new String(pass);
 				
-				Conextion con = Conextion.getConexion();
-				String consulta = "select * from usuario where usuario = '"+usuario+"' and password = '"+pass+"'";
-				con.setConsulta(consulta);
-				con.consultar();
-				
-				try {
-					if (con.getListaResultado().last()){
-						Inicio ventana = new Inicio();
-						ventana.getFrame().setVisible(true);
-						frmSaagaf.setVisible(false);
-					}
-					else{
-						//JOptionPane.showMessageDialog(null, "No exsite el usuario","ERROR");
-					}
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				//aqui se modifico para utilizar programacion por capas BRL - DAL
+				if(BRL.UsuarioBRL.VerficaUser(usuario, pass1)){
+					Inicio ventana = new Inicio();
+					ventana.getFrame().setVisible(true);
+					frmSaagaf.setVisible(false);
 				}
-				
+				else{
+					JOptionPane.showMessageDialog(null, "Error de Usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}
 				
 				
 			}
@@ -100,7 +93,7 @@ public class Login {
 		btnCancel.setForeground(Color.BLACK);
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				System.exit(0);
 			}
 		});
 		btnCancel.setBounds(212, 134, 128, 33);
