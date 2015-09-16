@@ -14,17 +14,22 @@ import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
+import java.awt.Color;
+import javax.swing.JPasswordField;
+import javax.swing.ImageIcon;
+import java.awt.Font;
 
 public class Login {
 
-	private JFrame frame;
+	private JFrame frmSaagaf;
 	private JTextField txtUsuario;
-	private JTextField txtPass;
+	private JPasswordField txtPassword;
 
 	
 
 	public JFrame getFrame() {
-		return frame;
+		return frmSaagaf;
 	}
 
 	/**
@@ -38,26 +43,29 @@ public class Login {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmSaagaf = new JFrame();
+		frmSaagaf.setResizable(false);
+		frmSaagaf.setTitle("Ingreso de Usuario");
+		frmSaagaf.getContentPane().setForeground(Color.BLACK);
+		frmSaagaf.getContentPane().setBackground(Color.GRAY);
+		frmSaagaf.setBounds(100, 100, 392, 217);
+		frmSaagaf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmSaagaf.getContentPane().setLayout(null);
 		
 		txtUsuario = new JTextField();
-		txtUsuario.setBounds(221, 76, 86, 20);
-		frame.getContentPane().add(txtUsuario);
+		txtUsuario.setBounds(79, 26, 111, 20);
+		frmSaagaf.getContentPane().add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
-		txtPass = new JTextField();
-		txtPass.setBounds(221, 146, 86, 20);
-		frame.getContentPane().add(txtPass);
-		txtPass.setColumns(10);
-		
 		JButton btnIngreso = new JButton("Ingresar");
+		btnIngreso.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
+		btnIngreso.setBackground(Color.WHITE);
+		btnIngreso.setIcon(new ImageIcon(Login.class.getResource("/Imagenes/check.png")));
+		btnIngreso.setForeground(Color.BLUE);
 		btnIngreso.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String usuario = txtUsuario.getText();
-				String pass = txtPass.getText();
+				String pass = txtPassword.getText();
 				
 				Conextion con = Conextion.getConexion();
 				String consulta = "select * from usuario where usuario = '"+usuario+"' and password = '"+pass+"'";
@@ -68,7 +76,7 @@ public class Login {
 					if (con.getListaResultado().last()){
 						Inicio ventana = new Inicio();
 						ventana.getFrame().setVisible(true);
-						frame.setVisible(false);
+						frmSaagaf.setVisible(false);
 					}
 					else{
 						//JOptionPane.showMessageDialog(null, "No exsite el usuario","ERROR");
@@ -82,24 +90,42 @@ public class Login {
 				
 			}
 		});
-		btnIngreso.setBounds(75, 201, 89, 23);
-		frame.getContentPane().add(btnIngreso);
+		btnIngreso.setBounds(58, 134, 118, 33);
+		frmSaagaf.getContentPane().add(btnIngreso);
 		
 		JButton btnCancel = new JButton("Cancelar");
+		btnCancel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 12));
+		btnCancel.setBackground(Color.WHITE);
+		btnCancel.setIcon(new ImageIcon(Login.class.getResource("/Imagenes/close.png")));
+		btnCancel.setForeground(Color.BLACK);
 		btnCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
 			}
 		});
-		btnCancel.setBounds(233, 201, 89, 23);
-		frame.getContentPane().add(btnCancel);
+		btnCancel.setBounds(212, 134, 128, 33);
+		frmSaagaf.getContentPane().add(btnCancel);
 		
 		JLabel lblNewLabel = new JLabel("Usuario");
-		lblNewLabel.setBounds(58, 79, 46, 14);
-		frame.getContentPane().add(lblNewLabel);
+		lblNewLabel.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 12));
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setBounds(10, 32, 46, 14);
+		frmSaagaf.getContentPane().add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Password");
-		lblNewLabel_1.setBounds(58, 149, 46, 14);
-		frame.getContentPane().add(lblNewLabel_1);
+		lblNewLabel_1.setFont(new Font("SansSerif", Font.BOLD | Font.ITALIC, 12));
+		lblNewLabel_1.setBackground(SystemColor.controlText);
+		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setBounds(10, 72, 81, 14);
+		frmSaagaf.getContentPane().add(lblNewLabel_1);
+		
+		txtPassword = new JPasswordField();
+		txtPassword.setBounds(79, 70, 111, 20);
+		frmSaagaf.getContentPane().add(txtPassword);
+		
+		JLabel lblImagen = new JLabel("New label");
+		lblImagen.setIcon(new ImageIcon(Login.class.getResource("/Imagenes/Padlock_User_Control_Icon_128.png")));
+		lblImagen.setBounds(222, 0, 118, 115);
+		frmSaagaf.getContentPane().add(lblImagen);
 	}
 }
