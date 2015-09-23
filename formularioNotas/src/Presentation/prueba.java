@@ -4,17 +4,22 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTable;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableModel;
 import javax.swing.JScrollPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
-
+import DAL.TModel;
+import DAL.CellRenderer;
+import DAL.TModelListener;
 public class prueba {
 
 	private JFrame frame;
-	private JTable table;
+	private JTable tablePrueba;
 
 	/**
 	 * Launch the application.
@@ -58,20 +63,15 @@ public class prueba {
 				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
 		);
 		
-		table = new JTable();
+		tablePrueba = new JTable();
 		
-		table.setModel(new DefaultTableModel(
-			new Object[][] {
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-				{null, null, null, null, null, null},
-			},
-			new String[] {
-				"Apellido", "Nombre", "Nota 1", "Nota 2", "Nota 3", "Nota Final"
-			}
-		));
-		table.getColumnModel().getColumn(0).setResizable(false);
-		scrollPane.setViewportView(table);
+		
+		
+		tablePrueba.setModel(new TModel());
+		tablePrueba.getModel().addTableModelListener(new TModelListener());
+		tablePrueba.getColumnModel().getColumn(1).setCellRenderer(new CellRenderer());
+		
+		scrollPane.setColumnHeaderView(tablePrueba);
 		frame.getContentPane().setLayout(groupLayout);
 	}
 }
