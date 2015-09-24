@@ -27,6 +27,7 @@ public class TModelListener implements TableModelListener {
                 int b =  ((Number) modelo.getValueAt(fila,columna+1)).intValue();
                 
                 //restricción
+                //aqui se aumenta la restriccion de nota
                 if( a <= 0){
                    JOptionPane.showMessageDialog( null , "Error: El valor debe ser enterio positivo.");
                    modelo.setValueAt( null , fila, columna); 
@@ -43,7 +44,7 @@ public class TModelListener implements TableModelListener {
 	@Override
 	public void tableChanged(TableModelEvent e) {
 		// TODO Auto-generated method stub
-		 ajuste( e );
+		 ajuste(e);
 	}
 
 }

@@ -10,16 +10,11 @@ public class TModel extends DefaultTableModel {
               false, true, false, false
           };
   
-  public TModel(){
+  public TModel(Object[][] data, Object[] columnNames){
       //unos valores por default :)
-       super( new Object[][] { { "Producto A", 23, 21, (23+21) }, 
-                               { "Producto B", 112, 2, (112+2) },
-                               { "Producto C", 22, 1, (22+1) },
-                               { "Producto D", 544, 2, (544+2) },
-                               { "Producto E", 12, 3, (12+3) }
-                             },
-       new String[] { "Producto", "Valor editable", "Valor Fijo","Total" });         
-     
+	  //TableModelDefault recibe estos parametros
+	  //DefaultTableModel(Object[][] data, Object[] columnNames)
+       super(data, columnNames);         
   }
   
   @Override

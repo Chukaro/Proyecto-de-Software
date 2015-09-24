@@ -63,15 +63,33 @@ public class prueba {
 				.addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
 		);
 		
+		
 		tablePrueba = new JTable();
+		/*
+		tablePrueba.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null},
+				{null, null},
+			},
+			new String[] {
+				"New column", "New column"
+			}
+		));
+		*/
 		
 		
+		tablePrueba.setModel(new TModel(
+				new Object[][] {
+					{null},
+					{null},
+				},
+				new String[] { "Producto", "Valor editable", "Valor Fijo","Total" }	)
+				);
 		
-		tablePrueba.setModel(new TModel());
 		tablePrueba.getModel().addTableModelListener(new TModelListener());
 		tablePrueba.getColumnModel().getColumn(1).setCellRenderer(new CellRenderer());
 		
-		scrollPane.setColumnHeaderView(tablePrueba);
+		scrollPane.setViewportView(tablePrueba);
 		frame.getContentPane().setLayout(groupLayout);
 	}
 }
