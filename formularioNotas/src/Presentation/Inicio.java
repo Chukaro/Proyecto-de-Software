@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
 import java.awt.Panel;
 import javax.swing.JMenu;
@@ -39,27 +40,33 @@ public class Inicio {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBackground(new Color(255, 255, 255));
+		frame.getContentPane().setBackground(new Color(0, 0, 139));
+		frame.setBounds(100, 100, 514, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
+		panel.setBackground(new Color(192, 192, 192));
 		panel.setBorder(new TitledBorder(null, "Fomularios", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(10, 11, 414, 81);
+		panel.setBounds(35, 11, 414, 81);
 		frame.getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JButton btnNewButton = new JButton("Simple");
-		btnNewButton.setBounds(28, 34, 89, 23);
-		panel.add(btnNewButton);
+		JButton btnSimple = new JButton("Simple");
+		btnSimple.setIcon(new ImageIcon(Inicio.class.getResource("/Imagenes/paste.png")));
+		btnSimple.setBounds(33, 24, 97, 33);
+		panel.add(btnSimple);
 		
-		JButton btnNewButton_1 = new JButton("Avanzado");
-		btnNewButton_1.setBounds(267, 34, 89, 23);
-		panel.add(btnNewButton_1);
+		JButton btnAvanzado = new JButton("Avanzado");
+		btnAvanzado.setIcon(new ImageIcon(Inicio.class.getResource("/Imagenes/paste.png")));	
+		btnAvanzado.setBounds(267, 24, 109, 33);
+		panel.add(btnAvanzado);
 		
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(new Color(192, 192, 192));
 		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Busqueda Formulario", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(10, 106, 414, 58);
+		panel_1.setBounds(35, 106, 414, 58);
 		frame.getContentPane().add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -72,8 +79,9 @@ public class Inicio {
 		panel_1.add(comboBox_1);
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setBackground(new Color(192, 192, 192));
 		panel_2.setBorder(new TitledBorder(null, "Materia", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_2.setBounds(10, 175, 414, 55);
+		panel_2.setBounds(35, 170, 414, 55);
 		frame.getContentPane().add(panel_2);
 		panel_2.setLayout(null);
 		
@@ -89,6 +97,8 @@ public class Inicio {
 		frame.setJMenuBar(menuBar);
 		
 		JMenu mnFormulario = new JMenu("Formulario");
+		mnFormulario.setBackground(new Color(0, 128, 128));
+		mnFormulario.setIcon(new ImageIcon(Inicio.class.getResource("/Imagenes/paste.png")));
 		menuBar.add(mnFormulario);
 		
 		JMenuItem mntmSimple = new JMenuItem("Simple");
@@ -98,9 +108,11 @@ public class Inicio {
 		mnFormulario.add(mntmAvanzado);
 		
 		JMenu mnBuscarEstudiante = new JMenu("Buscar Estudiante");
+		mnBuscarEstudiante.setIcon(new ImageIcon(Inicio.class.getResource("/Imagenes/zoom.png")));
 		menuBar.add(mnBuscarEstudiante);
 		
 		JMenu mnInformes = new JMenu("Informes");
+		mnInformes.setIcon(new ImageIcon(Inicio.class.getResource("/Imagenes/report.png")));
 		menuBar.add(mnInformes);
 		
 		JMenuItem mntmAprobados = new JMenuItem("Aprobados");
@@ -109,13 +121,16 @@ public class Inicio {
 		JMenuItem mntmReprobados = new JMenuItem("Reprobados");
 		mnInformes.add(mntmReprobados);
 		
-		JMenu mnCuente = new JMenu("Cuenta");
-		menuBar.add(mnCuente);
+		JMenu mnCuenta = new JMenu("Cuenta");
+		mnCuenta.setIcon(new ImageIcon(Inicio.class.getResource("/Imagenes/user.png")));	
+		menuBar.add(mnCuenta);
 		
 		JMenuItem mntmCambiarContrasea = new JMenuItem("Cambiar contrase\u00F1a");
-		mnCuente.add(mntmCambiarContrasea);
+		mnCuenta.add(mntmCambiarContrasea);
 		
 		JMenu mnCrearUsuario = new JMenu("Crear Usuario");
+		mnCrearUsuario.setIcon(new ImageIcon(Inicio.class.getResource("/Imagenes/user_add.png")));
 		menuBar.add(mnCrearUsuario);
 	}
+
 }
