@@ -9,7 +9,7 @@ public class TModelListener implements TableModelListener {
 	 /**
      * @param e TableModelEvent
      */
-    public void ajuste( TableModelEvent e ){
+    public void ajuste(TableModelEvent e ){
         
         //solo si se edita la tabla
         if ( e.getType() == TableModelEvent.UPDATE ) {
@@ -35,7 +35,7 @@ public class TModelListener implements TableModelListener {
                    return;
                 }
                 
-                modelo.setValueAt( a + b , fila, columna+2);
+                modelo.setValueAt( a + b, fila, columna+2);
                 
             } catch (NullPointerException ex) { /*...*/ }             
         }

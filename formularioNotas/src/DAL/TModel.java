@@ -4,15 +4,15 @@ import javax.swing.table.DefaultTableModel;
 
 public class TModel extends DefaultTableModel {
 	  Class[] types = new Class [] {
-              java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+              java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
           };
   boolean[] canEdit = new boolean [] {
-              false, true, false, false
+              true, true, true, true, true, true, false
           };
   
   public TModel(Object[][] data, Object[] columnNames){
       //unos valores por default :)
-	  //TableModelDefault recibe estos parametros
+	  //TableModelDtrue,efault recibe estos parametros
 	  //DefaultTableModel(Object[][] data, Object[] columnNames)
        super(data, columnNames);         
   }

@@ -76,14 +76,14 @@ public class prueba {
 			}
 		));
 		*/
-		
+
 		
 		tablePrueba.setModel(new TModel(
 				new Object[][] {
 					{null},
 					{null},
 				},
-				new String[] { "Producto", "Valor editable", "Valor Fijo","Total" }	)
+				new String[] { "Nombre", "Apellido Paterno", "Apellido Materno","Nota 1", "Nota 2", "Nota 3", "Nota Final"}	)
 				);
 		
 		tablePrueba.getModel().addTableModelListener(new TModelListener());
