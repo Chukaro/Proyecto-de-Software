@@ -20,10 +20,12 @@ import javax.swing.UIManager;
 import javax.swing.JComboBox;
 import java.awt.Insets;
 import java.awt.Font;
+import javax.swing.JDesktopPane;
 
 public class Inicio {
 
 	private JFrame frame;
+	private JDesktopPane contenedor;
 
 	
 	public JFrame getFrame() {
@@ -42,61 +44,17 @@ public class Inicio {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setResizable(false);
 		frame.setBackground(new Color(255, 255, 255));
-		frame.getContentPane().setBackground(new Color(0, 0, 139));
+		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 706, 387);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(new Color(192, 192, 192));
-		panel.setBorder(new TitledBorder(null, "Fomularios", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(10, 14, 680, 103);
-		frame.getContentPane().add(panel);
-		panel.setLayout(null);
+		contenedor = new JDesktopPane();
+		contenedor.setBounds(0, 0, 750, 332);
+		frame.getContentPane().add(contenedor);
 		
-		JButton btnSimple = new JButton("Simple");
-		btnSimple.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnSimple.setIcon(new ImageIcon(Inicio.class.getResource("/Imagenes/paste.png")));
-		btnSimple.setBounds(59, 24, 139, 49);
-		panel.add(btnSimple);
-		
-		JButton btnAvanzado = new JButton("Avanzado");
-		btnAvanzado.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnAvanzado.setIcon(new ImageIcon(Inicio.class.getResource("/Imagenes/paste.png")));	
-		btnAvanzado.setBounds(475, 24, 154, 49);
-		panel.add(btnAvanzado);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setBackground(new Color(192, 192, 192));
-		panel_1.setBorder(new TitledBorder(UIManager.getBorder("TitledBorder.border"), "Busqueda Formulario", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(231, 141, 258, 81);
-		frame.getContentPane().add(panel_1);
-		panel_1.setLayout(null);
-		
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(10, 37, 119, 20);
-		panel_1.add(comboBox);
-		
-		JComboBox comboBox_1 = new JComboBox();
-		comboBox_1.setBounds(167, 37, 67, 20);
-		panel_1.add(comboBox_1);
-		
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(new Color(192, 192, 192));
-		panel_2.setBorder(new TitledBorder(null, "Materia", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_2.setBounds(231, 249, 258, 72);
-		frame.getContentPane().add(panel_2);
-		panel_2.setLayout(null);
-		
-		JComboBox comboBox_2 = new JComboBox();
-		comboBox_2.setBounds(10, 24, 117, 20);
-		panel_2.add(comboBox_2);
-		
-		JComboBox comboBox_3 = new JComboBox();
-		comboBox_3.setBounds(167, 24, 65, 20);
-		panel_2.add(comboBox_3);
+		opcionesPrincipal();
 		
 		JMenuBar menuBar = new JMenuBar();
 		menuBar.setBorderPainted(false);
@@ -142,6 +100,24 @@ public class Inicio {
 		mnCrearUsuario.setFont(new Font("Segoe UI", Font.ITALIC, 15));
 		mnCrearUsuario.setIcon(new ImageIcon(Inicio.class.getResource("/Imagenes/user_add.png")));
 		menuBar.add(mnCrearUsuario);
-	}
 
+		
+	}
+	
+	private void opcionesPrincipal()
+	{
+		//se ingresa el JInternalFrame
+		OpcionesInicio opInicio = new OpcionesInicio();
+		opInicio.reshape(0, 0, 700, 332);
+		//opInicio.reshape(0, 0, 1200, 600);
+		//contenedor.setBounds(0, 0, 700, 332);
+		//this.getContentPane().removeAll();
+		contenedor.removeAll();
+		//this.getContentPane().add(v);
+		contenedor.add(opInicio);
+		opInicio.setVisible(true);
+		contenedor.repaint();
+		frame.setBounds(0, 0, 725, 432);
+		//this.repaint();
+	}
 }

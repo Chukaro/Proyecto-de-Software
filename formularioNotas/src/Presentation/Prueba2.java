@@ -70,7 +70,14 @@ public class Prueba2 {
 			public void actionPerformed(ActionEvent arg0) {
 				prueba3 prueba = new prueba3();
 				contenedor.add(prueba);
+				prueba.reshape(0, 0, 800, 600);
 				prueba.setVisible(true);
+				/*
+				 * 	this.setBounds(0, 0, anchoPrincipal, altoPrincipal);
+        			this.getContentPane().removeAll();
+        			this.getContentPane().add(v);
+        			this.repaint();
+				 * */
 			}
 		});
 		
