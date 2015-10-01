@@ -21,6 +21,8 @@ import javax.swing.JComboBox;
 import java.awt.Insets;
 import java.awt.Font;
 import javax.swing.JDesktopPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Inicio {
 
@@ -97,9 +99,24 @@ public class Inicio {
 		mnCuenta.add(mntmCambiarContrasea);
 		
 		JMenu mnCrearUsuario = new JMenu("Crear Usuario");
+	
 		mnCrearUsuario.setFont(new Font("Segoe UI", Font.ITALIC, 15));
 		mnCrearUsuario.setIcon(new ImageIcon(Inicio.class.getResource("/Imagenes/user_add.png")));
 		menuBar.add(mnCrearUsuario);
+		
+		JMenuItem mntmNuevoUsuario = new JMenuItem("Nuevo usuario");
+		mntmNuevoUsuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CreacionUsuario creacionUsuario = new CreacionUsuario();
+				creacionUsuario.reshape(0, 0, 700, 332);
+				contenedor.removeAll();
+				contenedor.add(creacionUsuario);
+				creacionUsuario.setVisible(true);
+				contenedor.repaint();
+				frame.setBounds(0, 0, 650, 400);
+			}
+		});
+		mnCrearUsuario.add(mntmNuevoUsuario);
 
 		
 	}

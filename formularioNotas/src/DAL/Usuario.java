@@ -52,6 +52,30 @@ public class Usuario {
 		return verfica;
 	}
 	
+	public static boolean existeNombreUsuario(String usuario)
+	{
+		Conextion con = Conextion.getConexion();
+		boolean verfica = false;
+		
+		String consulta = "select * from usuario where usuario = '"+usuario+"'";
+		con.setConsulta(consulta);
+		con.consultar();
+		
+		try {
+			if (con.getListaResultado().last()){
+				verfica = true;
+			}
+			else{
+				//JOptionPane.showMessageDialog(null, "No exsite el usuario","ERROR");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return verfica;
+	}
+	
 	
 	
 }

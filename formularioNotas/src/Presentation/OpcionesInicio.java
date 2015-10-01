@@ -20,25 +20,6 @@ public class OpcionesInicio extends JInternalFrame {
 		private JComponent barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
 		private Dimension DimensionBarra = null;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					OpcionesInicio frame = new OpcionesInicio();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public OpcionesInicio() {
 		getContentPane().setBackground(Color.WHITE);
 		setBorder(null);
