@@ -70,9 +70,11 @@ public class Login {
 				char[] pass = txtPassword.getPassword();
 				String pass1 = new String(pass);
 				
+				int idDocente = BRL.UsuarioBRL.VerficaUser(usuario, pass1); 
 				//aqui se modifico para utilizar programacion por capas BRL - DAL
-				if(BRL.UsuarioBRL.VerficaUser(usuario, pass1)){
+				if(idDocente > 0){
 					Inicio ventana = new Inicio();
+					ventana.datosDocente(idDocente);
 					ventana.getFrame().setVisible(true);
 					frmSaagaf.setVisible(false);
 				}

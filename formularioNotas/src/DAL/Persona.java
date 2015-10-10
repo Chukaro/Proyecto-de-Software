@@ -43,5 +43,10 @@ public class Persona {
 		this.materno = materno;
 	}
 	
+	@Override
+	public String toString()
+	{
+		return this.nombre;
+	}
 	
 }

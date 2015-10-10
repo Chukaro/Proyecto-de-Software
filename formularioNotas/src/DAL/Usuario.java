@@ -28,28 +28,26 @@ public class Usuario {
 		this.password = password;
 	}
 	
-	public static boolean verificaUser(String usuario, String pass){
+	public static int verificaUser(String usuario, String pass){
 		
 		Conextion con = Conextion.getConexion();
-		boolean verfica = false;
+				
+		int idDocente = 0;
 		
-		String consulta = "select * from usuario where usuario = '"+usuario+"' and password = '"+pass+"'";
+		String consulta = "select Docente_idDocente from usuario where usuario = '"+usuario+"' and password = '"+pass+"'";
 		con.setConsulta(consulta);
 		con.consultar();
 		
 		try {
-			if (con.getListaResultado().last()){
-				verfica = true;
-			}
-			else{
-				//JOptionPane.showMessageDialog(null, "No exsite el usuario","ERROR");
+			while(con.getListaResultado().next())
+			{
+				idDocente = con.getListaResultado().getInt("Docente_idDocente");
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		return verfica;
+				
+		return idDocente;
 	}
 	
 	public static boolean existeNombreUsuario(String usuario)
@@ -76,6 +74,16 @@ public class Usuario {
 		return verfica;
 	}
 	
-	
+	public static void crearUsuario(String pass, String usuario, int idDocente)
+	{
+		Conextion con = Conextion.getConexion();
+		boolean verfica = false;
+		
+		String consulta = "INSERT INTO usuario (idUsuario, usuario, password, eliminado, Docente_idDocente) VALUES (NULL, '"+usuario+"', '"+pass+"', b'1',"+idDocente+" );";
+		
+		con.setConsulta(consulta);
+		
+		con.ejecutar();
+	}
 	
 }
