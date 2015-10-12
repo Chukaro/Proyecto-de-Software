@@ -10,9 +10,9 @@ public class UsuarioBRL {
 		return DAL.Usuario.existeNombreUsuario(nom);
 	}
 	
-	public static void CrearUsuario(String usuario, String pass, int idDoc)
+	public static void CrearUsuario(String usuario, String pass, int idDoc, String cargo)
 	{
-		DAL.Usuario.crearUsuario(pass, usuario, idDoc);
+		DAL.Usuario.crearUsuario(pass, usuario, idDoc, cargo);
 	}
 
 }

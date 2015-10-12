@@ -18,6 +18,7 @@ import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+import javax.swing.DefaultComboBoxModel;
 
 public class CreacionUsuario extends JInternalFrame {
 
@@ -31,6 +32,7 @@ public class CreacionUsuario extends JInternalFrame {
 	private JLabel lblCodigoDocente;
 	private JPasswordField txtPassword;
 	private JPasswordField txtVerificacion;
+	private JComboBox cmBoxCargo;
 	
 	private DAL.Docente valorDefecto;
 	
@@ -52,32 +54,32 @@ public class CreacionUsuario extends JInternalFrame {
 		
 		JLabel lblNewLabel = new JLabel("Nombre Usuario");
 		lblNewLabel.setFont(new Font("Tahoma", Font.ITALIC, 12));
-		lblNewLabel.setBounds(40, 130, 162, 14);
+		lblNewLabel.setBounds(20, 88, 162, 14);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Password");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.ITALIC, 12));
-		lblNewLabel_1.setBounds(40, 186, 162, 14);
+		lblNewLabel_1.setBounds(20, 133, 162, 14);
 		panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Confirmar password");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.ITALIC, 12));
-		lblNewLabel_2.setBounds(40, 247, 162, 14);
+		lblNewLabel_2.setBounds(20, 185, 162, 14);
 		panel.add(lblNewLabel_2);
 		
 		lblId = new JLabel("New label");
-		lblId.setBounds(509, 81, 46, 14);
+		lblId.setBounds(489, 61, 46, 14);
 		
 		//lblId.setVisible(false);
 		
 		txtUsuario = new JTextField();
-		txtUsuario.setBounds(280, 128, 219, 20);
+		txtUsuario.setBounds(260, 86, 219, 20);
 		panel.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
-		lblCodigo = new JLabel(" ");
+		lblCodigo = new JLabel("codigo");
 		lblCodigo.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblCodigo.setBounds(280, 80, 120, 14);
+		lblCodigo.setBounds(260, 60, 120, 14);
 		
 		cmBoxDocente = new JComboBox();
 		cmBoxDocente.addActionListener(new ActionListener() {
@@ -95,8 +97,9 @@ public class CreacionUsuario extends JInternalFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				char[] password = txtPassword.getPassword();
 				String clave = new String(password);
+				String cargo = (String)cmBoxCargo.getSelectedItem();
 				try{
-					BRL.UsuarioBRL.CrearUsuario(txtUsuario.getText(), clave, Integer.parseInt(lblId.getText()) );
+					BRL.UsuarioBRL.CrearUsuario(txtUsuario.getText(), clave, Integer.parseInt(lblId.getText()), cargo );
 					limpiarText();
 				}
 			 	catch(Exception e){
@@ -121,12 +124,12 @@ public class CreacionUsuario extends JInternalFrame {
 		panel.add(btnCancelar);
 		
 		
-		cmBoxDocente.setBounds(280, 31, 275, 20);
+		cmBoxDocente.setBounds(260, 11, 275, 20);
 		panel.add(cmBoxDocente);
 		
 		JLabel lblDocente = new JLabel("Docente");
 		lblDocente.setFont(new Font("Tahoma", Font.ITALIC, 12));
-		lblDocente.setBounds(40, 33, 94, 14);
+		lblDocente.setBounds(20, 13, 94, 14);
 		panel.add(lblDocente);
 		
 		
@@ -136,7 +139,7 @@ public class CreacionUsuario extends JInternalFrame {
 		panel.add(lblId);
 		
 		lblCodigoDocente = new JLabel("Codigo Docente");
-		lblCodigoDocente.setBounds(90, 81, 112, 14);
+		lblCodigoDocente.setBounds(70, 61, 112, 14);
 		panel.add(lblCodigoDocente);
 		
 		txtPassword = new JPasswordField();
@@ -159,7 +162,7 @@ public class CreacionUsuario extends JInternalFrame {
 				}
 			}
 		});
-		txtPassword.setBounds(280, 184, 219, 20);
+		txtPassword.setBounds(260, 131, 219, 20);
 		panel.add(txtPassword);
 		
 		txtVerificacion = new JPasswordField();
@@ -183,8 +186,19 @@ public class CreacionUsuario extends JInternalFrame {
 				}
 			}
 		});
-		txtVerificacion.setBounds(280, 245, 219, 20);
+		txtVerificacion.setBounds(260, 183, 219, 20);
 		panel.add(txtVerificacion);
+		
+		JLabel lblNewLabel_3 = new JLabel("Cargo");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.ITALIC, 12));
+		lblNewLabel_3.setBounds(20, 240, 46, 14);
+		panel.add(lblNewLabel_3);
+		
+		cmBoxCargo = new JComboBox();
+		cmBoxCargo.setFont(new Font("Tahoma", Font.ITALIC, 12));
+		cmBoxCargo.setModel(new DefaultComboBoxModel(new String[] {"Administrador", "Docente"}));
+		cmBoxCargo.setBounds(260, 237, 139, 20);
+		panel.add(cmBoxCargo);
 		
 		llenarCmBoxDocente();
 

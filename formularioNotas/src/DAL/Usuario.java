@@ -82,12 +82,12 @@ public class Usuario {
 		return verfica;
 	}
 	
-	public static void crearUsuario(String pass, String usuario, int idDocente)
+	public static void crearUsuario(String pass, String usuario, int idDocente, String cargo)
 	{
 		Conextion con = Conextion.getConexion();
 		boolean verfica = false;
 		
-		String consulta = "INSERT INTO usuario (idUsuario, usuario, password, eliminado, Docente_idDocente) VALUES (NULL, '"+usuario+"', '"+pass+"', b'1',"+idDocente+" );";
+		String consulta = "INSERT INTO usuario (idUsuario, usuario, password, eliminado, Docente_idDocente, cargo) VALUES (NULL, '"+usuario+"', '"+pass+"', b'1',"+idDocente+",'"+cargo+"' );";
 		
 		con.setConsulta(consulta);
 		

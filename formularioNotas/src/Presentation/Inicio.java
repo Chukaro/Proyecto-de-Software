@@ -12,6 +12,7 @@ import java.awt.Font;
 import javax.swing.JDesktopPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JButton;
 
 public class Inicio {
 
@@ -127,6 +128,18 @@ public class Inicio {
 		menuBar.add(lblNomUsuario);
 		
 		mntmNuevoUsuario.setEnabled(false);
+		
+		JButton btnSalir = new JButton("");
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Login window = new Login();
+				window.getFrame().setVisible(true);
+				frame.setVisible(false);
+			}
+			
+		});
+		btnSalir.setIcon(new ImageIcon(Inicio.class.getResource("/Imagenes/user_black.png")));
+		menuBar.add(btnSalir);
 		
 	}
 	
