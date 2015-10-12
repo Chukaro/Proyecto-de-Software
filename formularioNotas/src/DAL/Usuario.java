@@ -8,6 +8,7 @@ public class Usuario {
 	private int id;
 	private String usuario;
 	private String password;
+	private String cargo;
 	
 	public int getId() {
 		return id;
@@ -26,6 +27,13 @@ public class Usuario {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public String getCargo() {
+		return cargo;
+	}
+	public void setCargo(String cargo) {
+		this.cargo = cargo;
 	}
 	
 	public static int verificaUser(String usuario, String pass){

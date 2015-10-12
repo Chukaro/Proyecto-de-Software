@@ -8,10 +8,20 @@ public class Docente extends Persona{
 	
 	private String codDocente;
 	private List<Asignatura> materias;
+	private Usuario usuario;
 	
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 	public Docente()
 	{
 		materias = new ArrayList<Asignatura>();
+		usuario = new Usuario();
 	}
 	
 	public String getCodDocente() {
@@ -29,6 +39,8 @@ public class Docente extends Persona{
 	public void setMaterias(Asignatura a) {
 		this.materias.add(a);
 	}
+	
+	
 
 	public static List<Docente> docentes()
 	{
@@ -64,7 +76,7 @@ public class Docente extends Persona{
 		
 		Conextion con = Conextion.getConexion();
 		
-		String consulta = "SELECT idDocente, CONCAT(nombre,' ',apPat,' ', apMAt) AS nombre FROM docente WHERE idDocente = "+ idDoc;
+		String consulta = "SELECT idDocente, CONCAT(d.nombre,' ',d.apPat) AS nombre, u.cargo FROM docente as d, usuario as u WHERE u.Docente_idDocente = d.idDocente and d.idDocente = "+ idDoc;
 		con.setConsulta(consulta);
 		con.consultar();
 		
@@ -72,9 +84,15 @@ public class Docente extends Persona{
 			
 			if(con.getListaResultado().first())
 			{
+				Usuario userDoc = new Usuario();
+				
 				infDocente.setId(con.getListaResultado().getInt("idDocente"));
 				infDocente.setNombre(con.getListaResultado().getString("nombre"));
-						
+				
+				userDoc.setCargo(con.getListaResultado().getString("cargo"));
+				
+				infDocente.setUsuario(userDoc);
+				
 				consulta = "SELECT a.idAsignatura, a.codAsignatura, a.nombre FROM docente as d, asignatura as a, materiadocente as md WHERE md.Docente_idDocente = d.idDocente and md.Asingantura_idAsignatura = a.idAsignatura and d.idDocente = "+ idDoc;
 			
 				con.setConsulta(consulta);

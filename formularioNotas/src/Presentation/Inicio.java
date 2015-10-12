@@ -126,6 +126,8 @@ public class Inicio {
 		menuBar.add(Box.createHorizontalGlue());
 		menuBar.add(lblNomUsuario);
 		
+		mntmNuevoUsuario.setEnabled(false);
+		
 	}
 	
 	public void opcionesPrincipal()
@@ -164,8 +166,10 @@ public class Inicio {
 	{
 		DAL.Docente infDocente = BRL.DocenteBRL.InformacionDocente(id);
 		
+		if (infDocente.getUsuario().getCargo().compareTo("Administrador") == 0)
+			mntmNuevoUsuario.setEnabled(true);
 		//se deshabilita la opcion de crear usuario
-		mntmNuevoUsuario.setEnabled(false);
+		
 		
 		nombreUsuario(infDocente.getNombre());
 		
