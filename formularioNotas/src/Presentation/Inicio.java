@@ -79,6 +79,14 @@ public class Inicio {
 		mnFormulario.add(mntmInicio);
 		
 		JMenuItem mntmSimple = new JMenuItem("Simple");
+		mntmSimple.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				PanillaSimple simple = new PanillaSimple();
+				contenedor.add(simple);
+				simple.reshape(0, 0, 900, 800);
+				simple.setVisible(true);
+			}
+		});
 		mnFormulario.add(mntmSimple);
 		
 		JMenuItem mntmAvanzado = new JMenuItem("Avanzado");
@@ -146,16 +154,16 @@ public class Inicio {
 	public void opcionesPrincipal()
 	{
 		//se ingresa el JInternalFrame
-		opInicio.reshape(0, 0, 700, 332);
+		opInicio.reshape(0, 0, 1200, 720);
 		//opInicio.reshape(0, 0, 1200, 600);
-		contenedor.setBounds(0, 0, 700, 332);
+		contenedor.setBounds(0, 0, 1200, 720);
 		//this.getContentPane().removeAll();
 		contenedor.removeAll();
 		//this.getContentPane().add(v);
 		contenedor.add(opInicio);
 		opInicio.setVisible(true);
 		contenedor.repaint();
-		frame.setBounds(0, 0, 725, 432);
+		frame.setBounds(0, 0, 1200, 720);
 		//this.repaint();
 	}
 	

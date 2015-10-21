@@ -53,6 +53,7 @@ public class prueba {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setAutoRequestFocus(false);
 		frame.setType(Type.UTILITY);
 		frame.setBounds(100, 100, 660, 527);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
