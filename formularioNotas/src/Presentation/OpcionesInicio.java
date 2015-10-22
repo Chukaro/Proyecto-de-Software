@@ -15,6 +15,8 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class OpcionesInicio extends JInternalFrame {
 	
@@ -38,12 +40,42 @@ public class OpcionesInicio extends JInternalFrame {
 		panel.setLayout(null);
 		
 		JButton btnSimple = new JButton("Simple");
+		btnSimple.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				PanillaSimple simple = new PanillaSimple();
+				
+				DAL.Asignatura dato = (DAL.Asignatura)comBoxMaterias.getSelectedItem();
+				
+				int id = dato.getIdAsignatura();
+				String cod = dato.getCodAsignatura();
+				String mom = dato.getNombre();
+				
+				simple.datosLabel(Inicio.lblNomUsuario.getText(), mom, cod);
+				simple.datosTabla(id);
+				simple.reshape(0, 0, 1200, 500);
+				
+				Inicio.contenedor.add(simple);
+				
+				simple.toFront();
+				
+				simple.setVisible(true);
+				Inicio.contenedor.repaint();
+				
+				Inicio.frame.setBounds(0, 0, 1200, 500);
+			}
+		});
 		btnSimple.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnSimple.setIcon(new ImageIcon(Inicio.class.getResource("/Imagenes/paste.png")));
 		btnSimple.setBounds(59, 24, 139, 49);
 		panel.add(btnSimple);
 		
 		JButton btnAvanzado = new JButton("Avanzado");
+		btnAvanzado.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		btnAvanzado.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		btnAvanzado.setIcon(new ImageIcon(Inicio.class.getResource("/Imagenes/paste.png")));	
 		btnAvanzado.setBounds(475, 24, 154, 49);

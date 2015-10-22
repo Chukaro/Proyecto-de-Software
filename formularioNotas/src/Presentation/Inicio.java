@@ -16,9 +16,9 @@ import javax.swing.JButton;
 
 public class Inicio {
 
-	private JFrame frame;
-	private JDesktopPane contenedor;
-	private JLabel lblNomUsuario;
+	public static JFrame frame;
+	public static JDesktopPane contenedor;
+	public static JLabel lblNomUsuario;
 	private OpcionesInicio opInicio = new OpcionesInicio();
 	private JMenuItem mntmNuevoUsuario;
 
@@ -26,7 +26,10 @@ public class Inicio {
 	public JDesktopPane getContenedor() {
 		return contenedor;
 	}
-
+	
+	public JLabel getLblNomUsuario() {
+		return lblNomUsuario;
+	}
 	
 	public JFrame getFrame() {
 		return frame;
@@ -82,9 +85,23 @@ public class Inicio {
 		mntmSimple.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				PanillaSimple simple = new PanillaSimple();
+				
+				//DAL.Asignatura dato = (DAL.Asignatura)comBoxMaterias.getSelectedItem();
+				
+				//int id = dato.getIdAsignatura();
+				//String cod = dato.getCodAsignatura();
+				//String mom = dato.getNombre();
+				
+				simple.datosLabel(lblNomUsuario.getText(), "Materia", "Codigo");
+				
+				
+				simple.reshape(0, 0, 1200, 700);
+				contenedor.setBounds(0, 0, 1200, 720);
+				contenedor.removeAll();
 				contenedor.add(simple);
-				simple.reshape(0, 0, 900, 800);
 				simple.setVisible(true);
+				contenedor.repaint();
+				frame.setBounds(0, 0, 1200, 700);	
 			}
 		});
 		mnFormulario.add(mntmSimple);

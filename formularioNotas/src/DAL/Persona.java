@@ -6,9 +6,27 @@ public class Persona {
 	private String nombre;
 	private String paterno;
 	private String materno;
+	private int codEst;
+	private int eliminado;
 	
 	public Persona() {
 		
+	}
+
+	public int getCodEst() {
+		return codEst;
+	}
+
+	public void setCodEst(int codEst) {
+		this.codEst = codEst;
+	}
+
+	public int getEliminado() {
+		return eliminado;
+	}
+
+	public void setEliminado(int eliminado) {
+		this.eliminado = eliminado;
 	}
 
 	public int getId() {

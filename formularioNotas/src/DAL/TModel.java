@@ -4,10 +4,26 @@ import javax.swing.table.DefaultTableModel;
 
 public class TModel extends DefaultTableModel {
 	  Class[] types = new Class [] {
-              java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+			  java.lang.Integer.class, 
+              java.lang.Object.class, 
+              java.lang.Object.class, 
+              java.lang.Object.class, 
+              java.lang.Integer.class, 
+              java.lang.Integer.class, 
+              java.lang.Integer.class, 
+              java.lang.Float.class,
+              java.lang.Object.class
           };
   boolean[] canEdit = new boolean [] {
-              true, true, true, true, true, true, false
+              false,
+              false, 
+              false,
+              false,
+              true, 
+              true,
+              true,
+              false,
+              false
           };
   
   public TModel(Object[][] data, Object[] columnNames){
