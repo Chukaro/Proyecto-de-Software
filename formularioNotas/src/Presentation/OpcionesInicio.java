@@ -2,11 +2,8 @@ package Presentation;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
-import java.util.Iterator;
 import java.util.List;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -51,7 +48,7 @@ public class OpcionesInicio extends JInternalFrame {
 				String cod = dato.getCodAsignatura();
 				String mom = dato.getNombre();
 				
-				simple.datosLabel(Inicio.lblNomUsuario.getText(), mom, cod);
+				simple.datosLabel(Inicio.lblNomUsuario.getText(), mom, cod, id);
 				simple.datosTabla(id);
 				simple.reshape(0, 0, 1200, 500);
 				

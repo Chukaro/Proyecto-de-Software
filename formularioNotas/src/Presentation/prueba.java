@@ -4,15 +4,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JTable;
-import javax.swing.event.TableModelListener;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableModel;
 import javax.swing.JScrollPane;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeEvent;
 import DAL.TModel;
 import DAL.CellRenderer;
 import DAL.TModelListener;

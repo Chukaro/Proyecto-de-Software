@@ -2,8 +2,6 @@ package DAL;
 
 import java.sql.SQLException;
 
-import Presentation.Inicio;
-
 public class Usuario {
 	private int id;
 	private String usuario;
@@ -85,8 +83,7 @@ public class Usuario {
 	public static void crearUsuario(String pass, String usuario, int idDocente, String cargo)
 	{
 		Conextion con = Conextion.getConexion();
-		boolean verfica = false;
-		
+				
 		String consulta = "INSERT INTO usuario (idUsuario, usuario, password, eliminado, Docente_idDocente, cargo) VALUES (NULL, '"+usuario+"', '"+pass+"', b'1',"+idDocente+",'"+cargo+"' );";
 		
 		con.setConsulta(consulta);

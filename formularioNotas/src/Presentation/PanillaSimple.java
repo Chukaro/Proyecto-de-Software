@@ -1,17 +1,20 @@
 package Presentation;
 
 import java.awt.Dimension;
-import java.awt.EventQueue;
-import java.util.ArrayList;
 import java.util.List;
-
 import javax.swing.JComponent;
 import javax.swing.JInternalFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-
+import javax.swing.table.TableModel;
+import DAL.DetalleFormularioSimple;
+import DAL.Formulario;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PanillaSimple extends JInternalFrame {
 
@@ -25,6 +28,7 @@ public class PanillaSimple extends JInternalFrame {
 	private JLabel lblSem;
 	private JLabel lblDocente;
 	private JLabel lblCodAsig;
+	private JLabel lblIdMat;
 	
 	public PanillaSimple() {
 		setBorder(null);
@@ -32,7 +36,7 @@ public class PanillaSimple extends JInternalFrame {
 		setBounds(100, 100, 787, 431);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 139, 767, 255);
+		scrollPane.setBounds(10, 139, 767, 266);
 		
 		JLabel lblMateria = new JLabel("Materia:");
 		lblMateria.setBounds(10, 11, 71, 14);
@@ -59,7 +63,7 @@ public class PanillaSimple extends JInternalFrame {
 		lblGes.setBounds(406, 75, 89, 14);
 		
 		JLabel lblNewLabel_6 = new JLabel("");
-		lblNewLabel_6.setBounds(598, 11, 86, 107);
+		lblNewLabel_6.setBounds(600, 11, 177, 61);
 		lblNewLabel_6.setIcon(new ImageIcon("C:\\Users\\MIGUEL\\git\\Proyecto-de-Software\\Proyecto-de-Software\\Proyecto-de-Software\\Proyecto-de-Software\\formularioNotas\\src\\Imagenes\\logocrg.gif"));
 		getContentPane().setLayout(null);
 		
@@ -85,16 +89,56 @@ public class PanillaSimple extends JInternalFrame {
 		getContentPane().add(lblNomMat);
 		getContentPane().add(lblNewLabel_6);
 		
-		JLabel lblCodigo = new JLabel("New label");
-		lblCodigo.setBounds(10, 49, 46, 14);
+		JLabel lblCodigo = new JLabel("Codigo materia");
+		lblCodigo.setBounds(10, 49, 89, 14);
 		getContentPane().add(lblCodigo);
 		
 		lblCodAsig = new JLabel("New label");
-		lblCodAsig.setBounds(90, 49, 111, 14);
+		lblCodAsig.setBounds(129, 49, 111, 14);
 		getContentPane().add(lblCodAsig);
+		
+		JButton btnGuardar = new JButton("Guardar Formulario");
+		btnGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				DAL.Formulario entrada = new Formulario();
+				//guardar los datos de la tabla y enviarlos a la base de datos
+				
+				entrada.setIdDocente(Main.Main.getIdDocente());
+				entrada.setIdMateria(Integer.parseInt(lblIdMat.getText()));
+				entrada.setNotaMax(100);
+				entrada.setNotaMin(0);
+				
+				TableModel valores = table.getModel();
+
+                int cols = valores.getColumnCount();
+                int fils = valores.getRowCount();
+
+                for (int i = 0; i < fils; i++) {
+                	DAL.DetalleFormularioSimple detalle = new DetalleFormularioSimple();
+                	Object[] fila = new Object[cols]; 
+                    for (int j = 0; j < cols; j++) {
+
+                        fila[j] = valores.getValueAt(i, j);
+                    }
+                                      
+                    entrada.setSimpel(new DAL.DetalleFormularioSimple((int)fila[0], (int)fila[4], (int)fila[5], (int)fila[6], entrada.getIdMateria()));
+                }
+                
+			}
+		});
+		
+		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		btnGuardar.setBounds(633, 99, 144, 29);
+		getContentPane().add(btnGuardar);
+		
+		lblIdMat = new JLabel("idmat");
+		lblIdMat.setBounds(322, 100, 26, 14);
+		getContentPane().add(lblIdMat);
 		quitarBarraTitulo();
-	
+		
 	}
+	
 	//quita la barra de titulo
 	public void quitarBarraTitulo(){ 
 		barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane(); 
@@ -119,9 +163,11 @@ public class PanillaSimple extends JInternalFrame {
 		}
 	}
 	
-	public void datosLabel(String nomDocente, String materia, String cod){
+	public void datosLabel(String nomDocente, String materia, String cod, int idMat){
 		lblDocente.setText(nomDocente);		
 		lblCodAsig.setText(cod);
 		lblNomMat.setText(materia);
+		lblIdMat.setText(idMat+"");
+		
 	}
 }

@@ -11,7 +11,6 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
-import java.sql.SQLException;
 import java.util.List;
 
 import javax.swing.JComboBox;

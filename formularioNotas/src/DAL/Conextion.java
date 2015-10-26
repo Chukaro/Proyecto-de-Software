@@ -66,16 +66,19 @@ public class Conextion {
     }
     
     //realiza insercion borrado y actualizacion de la base da datos
-    public boolean ejecutar() {
+    public int ejecutar() {
         Statement statement;
         try {
             statement = (Statement) instancia.conn.createStatement();
+            
             System.out.println(this.consulta);
+            
             statement.execute(this.consulta);
-            return true;
+            
+            return 1;
         } catch (SQLException ex) {
            JOptionPane.showMessageDialog(null, ex);
-           return false;
+           return 0;
         } 
         
     }

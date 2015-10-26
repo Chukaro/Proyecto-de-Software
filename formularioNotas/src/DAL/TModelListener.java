@@ -30,7 +30,7 @@ public class TModelListener implements TableModelListener {
             	 	int c =  ((Number) modelo.getValueAt(fila,columna+2)).intValue();
             	 	//restricción
             	 	//aqui se aumenta la restriccion de nota
-                	if( a <= 0){
+                	if( a <= 0 && a <= 100){
                 		JOptionPane.showMessageDialog( null , "Error: El valor debe ser entero positivo.");
                 		modelo.setValueAt( null , fila, columna); 
                 		modelo.setValueAt( null , fila, columna+3); 
@@ -56,7 +56,7 @@ public class TModelListener implements TableModelListener {
             	 	int c =  ((Number) modelo.getValueAt(fila,columna+1)).intValue();
             	 	//restricción
             	 	//aqui se aumenta la restriccion de nota
-                	if( a <= 0){
+                	if( a <= 0 && b <= 100){
                 		JOptionPane.showMessageDialog( null , "Error: El valor debe ser entero positivo.");
                 		modelo.setValueAt( null , fila, columna); 
                 		modelo.setValueAt( null , fila, columna+2); 
@@ -79,7 +79,7 @@ public class TModelListener implements TableModelListener {
             	 	int c =  ((Number) modelo.getValueAt(fila,columna)).intValue();
             	 	//restricción
             	 	//aqui se aumenta la restriccion de nota
-                	if( a <= 0){
+                	if( a <= 0 && c <= 100){
                 		JOptionPane.showMessageDialog( null , "Error: El valor debe ser entero positivo.");
                 		modelo.setValueAt( null , fila, columna); 
                 		modelo.setValueAt( null , fila, columna+1); 

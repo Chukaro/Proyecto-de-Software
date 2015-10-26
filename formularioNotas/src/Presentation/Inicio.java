@@ -82,28 +82,6 @@ public class Inicio {
 		mnFormulario.add(mntmInicio);
 		
 		JMenuItem mntmSimple = new JMenuItem("Simple");
-		mntmSimple.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				PanillaSimple simple = new PanillaSimple();
-				
-				//DAL.Asignatura dato = (DAL.Asignatura)comBoxMaterias.getSelectedItem();
-				
-				//int id = dato.getIdAsignatura();
-				//String cod = dato.getCodAsignatura();
-				//String mom = dato.getNombre();
-				
-				simple.datosLabel(lblNomUsuario.getText(), "Materia", "Codigo");
-				
-				
-				simple.reshape(0, 0, 1200, 700);
-				contenedor.setBounds(0, 0, 1200, 720);
-				contenedor.removeAll();
-				contenedor.add(simple);
-				simple.setVisible(true);
-				contenedor.repaint();
-				frame.setBounds(0, 0, 1200, 700);	
-			}
-		});
 		mnFormulario.add(mntmSimple);
 		
 		JMenuItem mntmAvanzado = new JMenuItem("Avanzado");
@@ -203,6 +181,8 @@ public class Inicio {
 	public void datosDocente(int id)
 	{
 		DAL.Docente infDocente = BRL.DocenteBRL.InformacionDocente(id);
+		
+		Main.Main.setIdDocente(infDocente.getId());
 		
 		if (infDocente.getUsuario().getCargo().compareTo("Administrador") == 0)
 			mntmNuevoUsuario.setEnabled(true);
