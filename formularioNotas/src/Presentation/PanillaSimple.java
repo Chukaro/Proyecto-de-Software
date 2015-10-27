@@ -53,13 +53,13 @@ public class PanillaSimple extends JInternalFrame {
 		lblNomMat = new JLabel("New label");
 		lblNomMat.setBounds(91, 11, 177, 14);
 		
-		lblSem = new JLabel("New label");
-		lblSem.setBounds(92, 86, 109, 14);
+		lblSem = new JLabel("I");
+		lblSem.setBounds(129, 86, 26, 14);
 		
 		lblDocente = new JLabel("New label");
 		lblDocente.setBounds(404, 22, 160, 14);
 		
-		lblGes = new JLabel("New label");
+		lblGes = new JLabel("2015");
 		lblGes.setBounds(406, 75, 89, 14);
 		
 		JLabel lblNewLabel_6 = new JLabel("");
@@ -115,7 +115,7 @@ public class PanillaSimple extends JInternalFrame {
                 int fils = valores.getRowCount();
 
                 for (int i = 0; i < fils; i++) {
-                	DAL.DetalleFormularioSimple detalle = new DetalleFormularioSimple();
+                	
                 	Object[] fila = new Object[cols]; 
                     for (int j = 0; j < cols; j++) {
 
@@ -124,6 +124,8 @@ public class PanillaSimple extends JInternalFrame {
                                       
                     entrada.setSimpel(new DAL.DetalleFormularioSimple((int)fila[0], (int)fila[4], (int)fila[5], (int)fila[6], entrada.getIdMateria()));
                 }
+                
+                DAL.Formulario.grabarFormulario(entrada);
                 
 			}
 		});

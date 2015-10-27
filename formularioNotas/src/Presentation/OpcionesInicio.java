@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JComponent;
 import javax.swing.JInternalFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
@@ -40,6 +41,7 @@ public class OpcionesInicio extends JInternalFrame {
 		btnSimple.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				
 				PanillaSimple simple = new PanillaSimple();
 				
 				DAL.Asignatura dato = (DAL.Asignatura)comBoxMaterias.getSelectedItem();
@@ -48,18 +50,25 @@ public class OpcionesInicio extends JInternalFrame {
 				String cod = dato.getCodAsignatura();
 				String mom = dato.getNombre();
 				
-				simple.datosLabel(Inicio.lblNomUsuario.getText(), mom, cod, id);
-				simple.datosTabla(id);
-				simple.reshape(0, 0, 1200, 500);
+				if (id > 0 && mom.length() > 0) {
+					simple.datosLabel(Inicio.lblNomUsuario.getText(), mom, cod, id);
+					simple.datosTabla(id);
+					simple.reshape(0, 0, 1200, 500);
+					
+					Inicio.contenedor.add(simple);
+					
+					simple.toFront();
+					
+					simple.setVisible(true);
+					Inicio.contenedor.repaint();
+					
+					Inicio.frame.setBounds(0, 0, 1200, 500);
+				} 
+				//else {
+					//JOptionPane.showMessageDialog(this, "Materia no asignadas", "Error");
+				//}
 				
-				Inicio.contenedor.add(simple);
 				
-				simple.toFront();
-				
-				simple.setVisible(true);
-				Inicio.contenedor.repaint();
-				
-				Inicio.frame.setBounds(0, 0, 1200, 500);
 			}
 		});
 		btnSimple.setFont(new Font("Tahoma", Font.PLAIN, 14));

@@ -66,13 +66,13 @@ public class Formulario {
 		
 		Conextion con = Conextion.getConexion();
 				
-		String consulta = "INSERT INTO formularionotas (notaMaxima, notaMinima, MateriaDocente_Asingantura_idAsignatura, MateriaDocente_Docente_idDocente)";
-		consulta += " VALUES (1, 1, 1, 1)";
+		String consulta = "INSERT INTO formularionotas (notaMaxima, notaMinima, "
+				+ "MateriaDocente_Asingantura_idAsignatura, MateriaDocente_Docente_idDocente)";
+		consulta += " VALUES (1, 100, "+formulario.getIdMateria()+", "+formulario.getIdDocente()+")";
+		
 		con.setConsulta(consulta);
 		
-		con.consultar();
-		
-		int valor = con.ejecutar();
+        int valor = con.ejecutar();
 		
 		if (valor > 0) {
 			consulta = "SELECT MAX(idFormulario) AS id FROM formularionotas";
@@ -81,15 +81,20 @@ public class Formulario {
 			con.consultar();
 			try {
 				while (con.getListaResultado().next()) {
+					
 					formulario.setId(con.getListaResultado().getInt("id"));
 					
 					for (DetalleFormularioSimple item : formulario.getSimple()) {
+					
 						consulta = "INSERT INTO detalleformulariosimple"
-								+ "(parcialUno, parcialDos, parcialTres, FormularioNotas_idFormulario, MateriaAlumno_Estudiante_idEstudiante, MateriaAlumno_Asingantura_idAsignatura)"
-								+ "VALUES (1, 1, 1, 1, 1, 1)";
+								+ "(parcialUno, parcialDos, parcialTres, FormularioNotas_idFormulario, "
+								+ "MateriaAlumno_Estudiante_idEstudiante, MateriaAlumno_Asingantura_idAsignatura)"
+								+ "VALUES ("+item.getNota1()+", "+item.getNota2()+", "+item.getNota3()+", "+formulario.getId()+","
+										+ " "+item.getIdEstudiante()+", "+formulario.getIdMateria()+")";
+						
 						con.setConsulta(consulta);
 						
-						con.consultar();
+						con.ejecutar();
 					}
 					
 				}				
