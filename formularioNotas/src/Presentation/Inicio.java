@@ -6,29 +6,31 @@ import javax.swing.ImageIcon;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
-import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JDesktopPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
+import java.awt.Component;
+import javax.swing.JLabel;
 
 public class Inicio {
 
 	public static JFrame frame;
 	public static JDesktopPane contenedor;
-	public static JLabel lblNomUsuario;
 	private OpcionesInicio opInicio = new OpcionesInicio();
 	private JMenuItem mntmNuevoUsuario;
+	private JMenuBar menuBar;
+	public static JLabel lblNomUsuario;
 
-	
-	public JDesktopPane getContenedor() {
-		return contenedor;
-	}
 	
 	public JLabel getLblNomUsuario() {
 		return lblNomUsuario;
+	}
+	
+	public JDesktopPane getContenedor() {
+		return contenedor;
 	}
 	
 	public JFrame getFrame() {
@@ -63,9 +65,11 @@ public class Inicio {
 		
 		opcionesPrincipal();
 		
-		JMenuBar menuBar = new JMenuBar();
+		menuBar = new JMenuBar();
 		menuBar.setBorderPainted(false);
 		frame.setJMenuBar(menuBar);
+		
+		
 		
 		JMenu mnFormulario = new JMenu("Formulario");
 		mnFormulario.setFont(new Font("Segoe UI", Font.ITALIC, 12));
@@ -127,11 +131,10 @@ public class Inicio {
 		
 		mnCrearUsuario.add(mntmNuevoUsuario);
 		
-		lblNomUsuario = new JLabel("New label");
-		menuBar.add(Box.createHorizontalGlue());
-		menuBar.add(lblNomUsuario);
-		
 		mntmNuevoUsuario.setEnabled(false);
+		
+		Component horizontalStrut = Box.createHorizontalStrut(257);
+		menuBar.add(horizontalStrut);
 		
 		JButton btnSalir = new JButton("");
 		btnSalir.addActionListener(new ActionListener() {
@@ -142,13 +145,18 @@ public class Inicio {
 			}
 			
 		});
+		
+		lblNomUsuario = new JLabel("New label");
+		menuBar.add(lblNomUsuario);
 		btnSalir.setIcon(new ImageIcon(Inicio.class.getResource("/Imagenes/user_black.png")));
 		menuBar.add(btnSalir);
+		
 		
 	}
 	
 	public void opcionesPrincipal()
 	{
+		datosDocente(Main.Main.getIdDocente());
 		//se ingresa el JInternalFrame
 		opInicio.reshape(0, 0, 800, 365);
 		//opInicio.reshape(0, 0, 1200, 600);
@@ -161,12 +169,6 @@ public class Inicio {
 		contenedor.repaint();
 		frame.setBounds(0, 0, 800, 415);
 		//this.repaint();
-		datosDocente(Main.Main.getIdDocente());
-	}
-	
-	private void nombreUsuario(String nombre)
-	{
-		lblNomUsuario.setText(nombre + "  ");	
 	}
 	
 	public void mostrarNuevoUsuario()
@@ -184,14 +186,17 @@ public class Inicio {
 	{
 		DAL.Docente infDocente = BRL.DocenteBRL.InformacionDocente(id);
 		
-		//Main.Main.setIdDocente(infDocente.getId());
+		//lblNomUsuario.setText(infDocente.getNombre() + "  ");
 		
+		//Main.Main.setIdDocente(infDocente.getId());
+				
 		if (infDocente.getUsuario().getCargo().compareTo("Administrador") == 0)
 			mntmNuevoUsuario.setEnabled(true);
 		//se deshabilita la opcion de crear usuario
 		
+		//nombreUsuario(infDocente.getNombre());
 		
-		nombreUsuario(infDocente.getNombre());
+		//nombreUsuario(materia);
 		
 		opInicio.comBoxMateriasIngreso(infDocente.getMaterias());
 		opInicio.cmBoxMatFormulario(BRL.DocenteBRL.MateriaFormulario(id));

@@ -47,7 +47,8 @@ public class Docente extends Persona{
 		List<Docente> retorno = new ArrayList<Docente>();
 		Conextion con = Conextion.getConexion();
 				
-		String consulta = "select idDocente, CONCAT(nombre,' ',apPat,' ', apMAt) as nombre, codDocente from docente ORDER BY nombre ASC ";
+		String consulta = "select idDocente, CONCAT(nombre,' ',apPat,' ', apMAt) as nombre, codDocente "
+				          + "from docente ORDER BY nombre ASC ";
 		con.setConsulta(consulta);
 		con.consultar();
 		
@@ -97,7 +98,7 @@ public class Docente extends Persona{
 						+ "FROM asignatura as a, materiadocente as md "
 						+ "WHERE md.Asingantura_idAsignatura = a.idAsignatura "
 						+ "and md.Asingantura_idAsignatura NOT IN (SELECT MateriaDocente_Asingantura_idAsignatura FROM formularionotas) "
-						+ "and md.Docente_idDocente ="+ idDoc;
+						+ "and md.Docente_idDocente = "+ idDoc;
 			
 				con.setConsulta(consulta);
 				con.consultar();
@@ -124,7 +125,7 @@ public class Docente extends Persona{
 	
 	public static List<Asignatura> materiaFormulario(int idDoc){
 		
-		List<Asignatura> dev = new ArrayList<>();
+		List<Asignatura> dev = new ArrayList<Asignatura>();
 		
 		Conextion con = Conextion.getConexion();
 		
