@@ -13,4 +13,8 @@ public class DocenteBRL {
 	{
 		return DAL.Docente.informacionDocente(idDoc);		
 	}
+	
+	public static List<DAL.Asignatura> MateriaFormulario(int idDoc){
+		return DAL.Docente.materiaFormulario(idDoc);
+	}
 }

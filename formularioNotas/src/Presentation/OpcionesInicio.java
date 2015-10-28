@@ -67,9 +67,9 @@ public class OpcionesInicio extends JInternalFrame {
 					
 					Inicio.frame.setBounds(0, 0, 780, 590);
 				} 
-				//else {
-					//JOptionPane.showMessageDialog(this, "Materia no asignadas", "Error");
-				//}
+				else {
+					JOptionPane.showMessageDialog(null, "Materias no asignadas", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 				
 				
 			}
@@ -156,7 +156,7 @@ public class OpcionesInicio extends JInternalFrame {
 		}
 	}
 	
-	public void matFormulario(List<DAL.Asignatura> materias)
+	public void cmBoxMatFormulario(List<DAL.Asignatura> materias)
 	{   
 		if(materias.size() !=0)
 		{

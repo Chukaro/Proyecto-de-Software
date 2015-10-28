@@ -95,7 +95,9 @@ public class Docente extends Persona{
 				
 				consulta = "SELECT a.idAsignatura, a.codAsignatura, a.nombre "
 						+ "FROM asignatura as a, materiadocente as md "
-						+ "WHERE md.Asingantura_idAsignatura = a.idAsignatura and md.Docente_idDocente = "+ idDoc;
+						+ "WHERE md.Asingantura_idAsignatura = a.idAsignatura "
+						+ "and md.Asingantura_idAsignatura NOT IN (SELECT MateriaDocente_Asingantura_idAsignatura FROM formularionotas) "
+						+ "and md.Docente_idDocente ="+ idDoc;
 			
 				con.setConsulta(consulta);
 				con.consultar();
@@ -127,9 +129,10 @@ public class Docente extends Persona{
 		Conextion con = Conextion.getConexion();
 		
 		String consulta = "SELECT a.idAsignatura, a.codAsignatura, a.nombre "
-				+ "FROM docente as d, asignatura as a, materiadocente as md, formularionotas fn "
-				+ "WHERE md.Docente_idDocente = d.idDocente and md.Asingantura_idAsignatura = a.idAsignatura "
-				+ "and a.idAsignatura = fn.MateriaDocente_Asingantura_idAsignatura and d.idDocente = "+ idDoc;
+				+ "FROM asignatura as a, materiadocente as md "
+				+ "WHERE md.Asingantura_idAsignatura = a.idAsignatura "
+				+ "and md.Asingantura_idAsignatura IN (SELECT MateriaDocente_Asingantura_idAsignatura FROM formularionotas) "
+				+ "and md.Docente_idDocente ="+ idDoc;
 		
 		con.setConsulta(consulta);
 		con.consultar();

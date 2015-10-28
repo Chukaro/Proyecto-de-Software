@@ -161,6 +161,7 @@ public class Inicio {
 		contenedor.repaint();
 		frame.setBounds(0, 0, 800, 415);
 		//this.repaint();
+		datosDocente(Main.Main.getIdDocente());
 	}
 	
 	private void nombreUsuario(String nombre)
@@ -176,14 +177,14 @@ public class Inicio {
 		contenedor.add(creacionUsuario);
 		creacionUsuario.setVisible(true);
 		contenedor.repaint();
-		frame.setBounds(0, 0, 800, 365);		
+		frame.setBounds(0, 0, 800, 365);
 	}
 	
 	public void datosDocente(int id)
 	{
 		DAL.Docente infDocente = BRL.DocenteBRL.InformacionDocente(id);
 		
-		Main.Main.setIdDocente(infDocente.getId());
+		//Main.Main.setIdDocente(infDocente.getId());
 		
 		if (infDocente.getUsuario().getCargo().compareTo("Administrador") == 0)
 			mntmNuevoUsuario.setEnabled(true);
@@ -193,5 +194,6 @@ public class Inicio {
 		nombreUsuario(infDocente.getNombre());
 		
 		opInicio.comBoxMateriasIngreso(infDocente.getMaterias());
+		opInicio.cmBoxMatFormulario(BRL.DocenteBRL.MateriaFormulario(id));
 	}
 }

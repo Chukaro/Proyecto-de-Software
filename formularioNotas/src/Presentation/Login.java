@@ -67,12 +67,13 @@ public class Login {
 				//aqui se modifico para utilizar programacion por capas BRL - DAL
 				if(idDocente > 0){
 					Inicio ventana = new Inicio();
-					ventana.datosDocente(idDocente);
+					Main.Main.setIdDocente(idDocente);					
+					//ventana.datosDocente(idDocente);
 					ventana.getFrame().setVisible(true);
 					frmSaagaf.setVisible(false);
 				}
 				else{
-					JOptionPane.showMessageDialog(null, "Error de Usuario", "ERROR", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Error de Usuario", "ERROR DE SESION", JOptionPane.ERROR_MESSAGE);
 				}
 				
 				
