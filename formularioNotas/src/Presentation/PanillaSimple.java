@@ -15,6 +15,8 @@ import javax.swing.JButton;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
+import java.awt.SystemColor;
 
 public class PanillaSimple extends JInternalFrame {
 
@@ -31,18 +33,19 @@ public class PanillaSimple extends JInternalFrame {
 	private JLabel lblIdMat;
 	
 	public PanillaSimple() {
+		getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		setBorder(null);
-		setResizable(true);
-		setBounds(100, 100, 787, 431);
+		setResizable(false);
+		setBounds(100, 100, 774, 639);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 139, 767, 266);
+		scrollPane.setBounds(10, 158, 750, 447);
 		
 		JLabel lblMateria = new JLabel("Materia:");
-		lblMateria.setBounds(10, 11, 71, 14);
+		lblMateria.setBounds(10, 22, 71, 14);
 		
 		JLabel lblSemestre = new JLabel("Semestre:");
-		lblSemestre.setBounds(10, 86, 71, 14);
+		lblSemestre.setBounds(10, 97, 71, 14);
 		
 		JLabel lblNewLabel = new JLabel("Docente:");
 		lblNewLabel.setBounds(325, 22, 69, 14);
@@ -51,7 +54,7 @@ public class PanillaSimple extends JInternalFrame {
 		lblNewLabel_1.setBounds(325, 75, 71, 14);
 		
 		lblNomMat = new JLabel("New label");
-		lblNomMat.setBounds(91, 11, 177, 14);
+		lblNomMat.setBounds(129, 22, 177, 14);
 		
 		lblSem = new JLabel("I");
 		lblSem.setBounds(129, 86, 26, 14);
@@ -77,24 +80,12 @@ public class PanillaSimple extends JInternalFrame {
 		
 		table.getModel().addTableModelListener( new DAL.TModelListener() );
 		
-		scrollPane.setViewportView(table);
-		getContentPane().add(scrollPane);
-		getContentPane().add(lblNewLabel_1);
-		getContentPane().add(lblGes);
-		getContentPane().add(lblNewLabel);
-		getContentPane().add(lblDocente);
-		getContentPane().add(lblSemestre);
-		getContentPane().add(lblSem);
-		getContentPane().add(lblMateria);
-		getContentPane().add(lblNomMat);
-		getContentPane().add(lblNewLabel_6);
-		
 		JLabel lblCodigo = new JLabel("Codigo materia");
-		lblCodigo.setBounds(10, 49, 89, 14);
+		lblCodigo.setBounds(10, 60, 89, 14);
 		getContentPane().add(lblCodigo);
 		
 		lblCodAsig = new JLabel("New label");
-		lblCodAsig.setBounds(129, 49, 111, 14);
+		lblCodAsig.setBounds(129, 60, 111, 14);
 		getContentPane().add(lblCodAsig);
 		
 		JButton btnGuardar = new JButton("Guardar Formulario");
@@ -131,7 +122,7 @@ public class PanillaSimple extends JInternalFrame {
 		});
 		
 		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnGuardar.setBounds(633, 99, 144, 29);
+		btnGuardar.setBounds(599, 112, 144, 29);
 		getContentPane().add(btnGuardar);
 		
 		lblIdMat = new JLabel("idmat");
@@ -139,6 +130,20 @@ public class PanillaSimple extends JInternalFrame {
 		getContentPane().add(lblIdMat);
 		quitarBarraTitulo();
 		
+		scrollPane.setViewportView(table);
+		getContentPane().add(scrollPane);
+		getContentPane().add(lblNewLabel_1);
+		getContentPane().add(lblGes);
+		getContentPane().add(lblNewLabel);
+		getContentPane().add(lblDocente);
+		getContentPane().add(lblSemestre);
+		getContentPane().add(lblSem);
+		getContentPane().add(lblMateria);
+		getContentPane().add(lblNomMat);
+		getContentPane().add(lblNewLabel_6);
+		
+		table.setFont(new java.awt.Font("Tahoma", 0, 15)); 
+		tamCelda();
 	}
 	
 	//quita la barra de titulo
@@ -171,5 +176,17 @@ public class PanillaSimple extends JInternalFrame {
 		lblNomMat.setText(materia);
 		lblIdMat.setText(idMat+"");
 		
+	}
+	
+	private void tamCelda(){
+		int[] tamCel = {0, 190, 120, 120, 50, 50, 50, 70, 100}; 
+		
+		for (int i = 0; i < table.getColumnCount(); i++) {
+			table.getColumnModel().getColumn(i).setMaxWidth(tamCel[i]);
+
+			table.getColumnModel().getColumn(i).setMinWidth(tamCel[i]);
+
+			table.getColumnModel().getColumn(i).setPreferredWidth(tamCel[i]);
+		}
 	}
 }

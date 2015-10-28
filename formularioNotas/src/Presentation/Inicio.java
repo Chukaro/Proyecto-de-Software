@@ -50,6 +50,7 @@ public class Inicio {
 		
 		
 		frame = new JFrame();
+		frame.setResizable(false);
 		frame.setBackground(new Color(255, 255, 255));
 		frame.getContentPane().setBackground(Color.WHITE);
 		frame.setBounds(100, 100, 706, 387);
@@ -149,16 +150,16 @@ public class Inicio {
 	public void opcionesPrincipal()
 	{
 		//se ingresa el JInternalFrame
-		opInicio.reshape(0, 0, 1200, 720);
+		opInicio.reshape(0, 0, 800, 365);
 		//opInicio.reshape(0, 0, 1200, 600);
-		contenedor.setBounds(0, 0, 1200, 720);
+		contenedor.setBounds(0, 0, 800, 365);
 		//this.getContentPane().removeAll();
 		contenedor.removeAll();
 		//this.getContentPane().add(v);
 		contenedor.add(opInicio);
 		opInicio.setVisible(true);
 		contenedor.repaint();
-		frame.setBounds(0, 0, 1200, 720);
+		frame.setBounds(0, 0, 800, 415);
 		//this.repaint();
 	}
 	
@@ -170,12 +171,12 @@ public class Inicio {
 	public void mostrarNuevoUsuario()
 	{
 		CreacionUsuario creacionUsuario = new CreacionUsuario();
-		creacionUsuario.reshape(0, 0, 700, 332);
+		creacionUsuario.reshape(0, 0, 800, 365);
 		contenedor.removeAll();
 		contenedor.add(creacionUsuario);
 		creacionUsuario.setVisible(true);
 		contenedor.repaint();
-		frame.setBounds(0, 0, 650, 400);		
+		frame.setBounds(0, 0, 800, 365);		
 	}
 	
 	public void datosDocente(int id)

@@ -93,7 +93,9 @@ public class Docente extends Persona{
 				
 				infDocente.setUsuario(userDoc);
 				
-				consulta = "SELECT a.idAsignatura, a.codAsignatura, a.nombre FROM docente as d, asignatura as a, materiadocente as md WHERE md.Docente_idDocente = d.idDocente and md.Asingantura_idAsignatura = a.idAsignatura and d.idDocente = "+ idDoc;
+				consulta = "SELECT a.idAsignatura, a.codAsignatura, a.nombre "
+						+ "FROM asignatura as a, materiadocente as md "
+						+ "WHERE md.Asingantura_idAsignatura = a.idAsignatura and md.Docente_idDocente = "+ idDoc;
 			
 				con.setConsulta(consulta);
 				con.consultar();
@@ -116,5 +118,40 @@ public class Docente extends Persona{
 		}
 		
 		return infDocente;
+	}
+	
+	public static List<Asignatura> materiaFormulario(int idDoc){
+		
+		List<Asignatura> dev = new ArrayList<>();
+		
+		Conextion con = Conextion.getConexion();
+		
+		String consulta = "SELECT a.idAsignatura, a.codAsignatura, a.nombre "
+				+ "FROM docente as d, asignatura as a, materiadocente as md, formularionotas fn "
+				+ "WHERE md.Docente_idDocente = d.idDocente and md.Asingantura_idAsignatura = a.idAsignatura "
+				+ "and a.idAsignatura = fn.MateriaDocente_Asingantura_idAsignatura and d.idDocente = "+ idDoc;
+		
+		con.setConsulta(consulta);
+		con.consultar();
+		
+		try {
+			while (con.getListaResultado().next())
+			{
+				Asignatura materia = new Asignatura();	
+			
+				materia.setIdAsignatura(con.getListaResultado().getInt("idAsignatura"));	
+				materia.setCodAsignatura(con.getListaResultado().getString("codAsignatura"));
+				materia.setNombre(con.getListaResultado().getString("nombre"));
+			
+				dev.add(materia);
+			}
+			
+		}
+		catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return dev;
 	}
 }

@@ -43,27 +43,27 @@ public class CreacionUsuario extends JInternalFrame {
 		quitarBarraTitulo();
 		
 		setBorder(null);
-		setBounds(100, 100, 565, 361);
+		setBounds(100, 100, 727, 361);
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 565, 335);
+		panel.setBounds(0, 0, 727, 335);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Nombre Usuario");
 		lblNewLabel.setFont(new Font("Tahoma", Font.ITALIC, 12));
-		lblNewLabel.setBounds(20, 88, 162, 14);
+		lblNewLabel.setBounds(20, 120, 162, 14);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("Password");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.ITALIC, 12));
-		lblNewLabel_1.setBounds(20, 133, 162, 14);
+		lblNewLabel_1.setBounds(20, 165, 162, 14);
 		panel.add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("Confirmar password");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.ITALIC, 12));
-		lblNewLabel_2.setBounds(20, 185, 162, 14);
+		lblNewLabel_2.setBounds(20, 217, 162, 14);
 		panel.add(lblNewLabel_2);
 		
 		lblId = new JLabel("New label");
@@ -72,7 +72,7 @@ public class CreacionUsuario extends JInternalFrame {
 		//lblId.setVisible(false);
 		
 		txtUsuario = new JTextField();
-		txtUsuario.setBounds(260, 86, 219, 20);
+		txtUsuario.setBounds(260, 118, 219, 20);
 		panel.add(txtUsuario);
 		txtUsuario.setColumns(10);
 		
@@ -109,7 +109,7 @@ public class CreacionUsuario extends JInternalFrame {
 			}
 		});
 		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnGuardar.setBounds(20, 292, 175, 32);
+		btnGuardar.setBounds(542, 254, 175, 32);
 		panel.add(btnGuardar);
 		
 		JButton btnCancelar = new JButton("Cancelar");
@@ -119,7 +119,7 @@ public class CreacionUsuario extends JInternalFrame {
 			}
 		});
 		btnCancelar.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		btnCancelar.setBounds(267, 292, 132, 32);
+		btnCancelar.setBounds(585, 188, 132, 32);
 		panel.add(btnCancelar);
 		
 		
@@ -161,7 +161,7 @@ public class CreacionUsuario extends JInternalFrame {
 				}
 			}
 		});
-		txtPassword.setBounds(260, 131, 219, 20);
+		txtPassword.setBounds(260, 163, 219, 20);
 		panel.add(txtPassword);
 		
 		txtVerificacion = new JPasswordField();
@@ -185,18 +185,18 @@ public class CreacionUsuario extends JInternalFrame {
 				}
 			}
 		});
-		txtVerificacion.setBounds(260, 183, 219, 20);
+		txtVerificacion.setBounds(260, 215, 219, 20);
 		panel.add(txtVerificacion);
 		
 		JLabel lblNewLabel_3 = new JLabel("Cargo");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.ITALIC, 12));
-		lblNewLabel_3.setBounds(20, 240, 46, 14);
+		lblNewLabel_3.setBounds(20, 272, 46, 14);
 		panel.add(lblNewLabel_3);
 		
 		cmBoxCargo = new JComboBox();
 		cmBoxCargo.setFont(new Font("Tahoma", Font.ITALIC, 12));
 		cmBoxCargo.setModel(new DefaultComboBoxModel(new String[] {"Administrador", "Docente"}));
-		cmBoxCargo.setBounds(260, 237, 139, 20);
+		cmBoxCargo.setBounds(260, 269, 139, 20);
 		panel.add(cmBoxCargo);
 		
 		llenarCmBoxDocente();
