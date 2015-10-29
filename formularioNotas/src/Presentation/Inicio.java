@@ -133,9 +133,6 @@ public class Inicio {
 		
 		mntmNuevoUsuario.setEnabled(false);
 		
-		Component horizontalStrut = Box.createHorizontalStrut(257);
-		menuBar.add(horizontalStrut);
-		
 		JButton btnSalir = new JButton("");
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -145,6 +142,9 @@ public class Inicio {
 			}
 			
 		});
+		
+		Component horizontalGlue = Box.createHorizontalGlue();
+		menuBar.add(horizontalGlue);
 		
 		lblNomUsuario = new JLabel(Main.Main.getNombre()+"  ");
 		menuBar.add(lblNomUsuario);

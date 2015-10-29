@@ -2,6 +2,7 @@ package Presentation;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.util.List;
 
 import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
@@ -34,44 +35,44 @@ public class ActualizarFormulario extends JInternalFrame {
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(10, 11, 46, 14);
+		JLabel lblNewLabel = new JLabel("Nombre materia");
+		lblNewLabel.setBounds(10, 11, 98, 14);
 		panel.add(lblNewLabel);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(100, 11, 46, 14);
+		lblNewLabel_1.setBounds(144, 11, 46, 14);
 		panel.add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
+		JLabel lblNewLabel_2 = new JLabel("Semestre");
 		lblNewLabel_2.setBounds(10, 56, 46, 14);
 		panel.add(lblNewLabel_2);
 		
-		JLabel lblNewLabel_3 = new JLabel("New label");
-		lblNewLabel_3.setBounds(100, 56, 46, 14);
+		JLabel lblNewLabel_3 = new JLabel("I");
+		lblNewLabel_3.setBounds(144, 56, 46, 14);
 		panel.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_4 = new JLabel("New label");
-		lblNewLabel_4.setBounds(422, 11, 46, 14);
+		JLabel lblNewLabel_4 = new JLabel("Nombre docente");
+		lblNewLabel_4.setBounds(378, 11, 90, 14);
 		panel.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("New label");
 		lblNewLabel_5.setBounds(508, 11, 46, 14);
 		panel.add(lblNewLabel_5);
 		
-		JLabel lblNewLabel_6 = new JLabel("New label");
-		lblNewLabel_6.setBounds(422, 56, 46, 14);
+		JLabel lblNewLabel_6 = new JLabel("Codigo docente");
+		lblNewLabel_6.setBounds(378, 56, 90, 14);
 		panel.add(lblNewLabel_6);
 		
 		JLabel lblNewLabel_7 = new JLabel("New label");
 		lblNewLabel_7.setBounds(508, 56, 46, 14);
 		panel.add(lblNewLabel_7);
 		
-		JLabel lblNewLabel_8 = new JLabel("New label");
+		JLabel lblNewLabel_8 = new JLabel("Gestion");
 		lblNewLabel_8.setBounds(10, 105, 46, 14);
 		panel.add(lblNewLabel_8);
 		
-		JLabel lblNewLabel_9 = new JLabel("New label");
-		lblNewLabel_9.setBounds(100, 105, 46, 14);
+		JLabel lblNewLabel_9 = new JLabel("2015");
+		lblNewLabel_9.setBounds(144, 105, 46, 14);
 		panel.add(lblNewLabel_9);
 		
 		JPanel panel_1 = new JPanel();
@@ -118,4 +119,22 @@ public class ActualizarFormulario extends JInternalFrame {
 		barra.setPreferredSize(new Dimension(0,0)); 
 		repaint(); 
 	}
+		
+	public void datosFormulario(int idMateria, int idDocente){
+		DAL.Formulario formulario = BRL.FormularioBRL.recuperarDatosActualizar(idDocente, idMateria);
+		
+		DAL.TModel modelo = (DAL.TModel) table.getModel();
+		
+		if(formulario.getSimple().size() != 0){
+			
+			for (DAL.DetalleFormularioSimple item : formulario.getSimple()) {
+				
+				
+				Object [] fila = { item.getEstudiante().getId(), item.getEstudiante().getNombre(), item.getEstudiante().getPaterno(), item.getEstudiante().getMaterno(), item.getNota1(), item.getNota2(), item.getNota3(), null, null };
+				modelo.addRow(fila);
+			}
+		
+		}
+	}
+	
 }

@@ -106,7 +106,8 @@ public class Formulario {
 		
 	}
 	
-	public static Formulario datosActualizar(int idDoc, int idMat){
+	
+	public static Formulario recuperarDatosActualizar(int idDoc, int idMat){
 		
 		Formulario dev = new Formulario();
 		
@@ -133,9 +134,8 @@ public class Formulario {
 						+ "FROM formularionotas as fn, detalleformulariosimple as dfs, estudiante as e "
 						+ "WHERE dfs.FormularioNotas_idFormulario = fn.idFormulario "
 						+ "and dfs.MateriaAlumno_Estudiante_idEstudiante = e.idEstudiante "
-						+ "and dfs.FormularioNotas_idFormulario = 1 "
-						+ "and dfs.MateriaAlumno_Asingantura_idAsignatura = 1 "
-						+ "ORDER BY e.apPat ";
+						+ "and dfs.FormularioNotas_idFormulario = "+ dev.getId()+ ""
+						+ "and dfs.MateriaAlumno_Asingantura_idAsignatura = "+dev.getIdMateria()+" ORDER BY e.apPat ";
 						
 				con.setConsulta(consulta);
 						
