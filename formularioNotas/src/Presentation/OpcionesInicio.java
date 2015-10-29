@@ -135,7 +135,7 @@ public class OpcionesInicio extends JInternalFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				ActualizarFormulario actual = new ActualizarFormulario();
 				
-				DAL.Asignatura dato = (DAL.Asignatura)comBoxMaterias.getSelectedItem();
+				DAL.Asignatura dato = (DAL.Asignatura)cmBoxModificar.getSelectedItem();
 				
 				int id = dato.getIdAsignatura();
 				String cod = dato.getCodAsignatura();
@@ -149,8 +149,8 @@ public class OpcionesInicio extends JInternalFrame {
 				
 				actual.setVisible(true);
 				//Inicio.contenedor.repaint();
-				actual.datosFormulario(id, Main.Main.getIdDocente());
-				Inicio.frame.setBounds(0, 0, 780, 590);
+				actual.datosFormulario(id, Main.Main.getIdDocente(), mom, cod, id);
+				Inicio.frame.setBounds(0, 0, 770, 590);
 			}
 		});
 		btnModificar.setBounds(233, 37, 150, 23);

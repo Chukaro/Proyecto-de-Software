@@ -11,6 +11,7 @@ import javax.swing.JTable;
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
+import java.awt.Font;
 
 public class ActualizarFormulario extends JInternalFrame {
 
@@ -25,63 +26,89 @@ public class ActualizarFormulario extends JInternalFrame {
 	private JComponent barra = ((javax.swing.plaf.basic.BasicInternalFrameUI) getUI()).getNorthPane();
 	private Dimension DimensionBarra = null; 
 	
+	private JLabel lblidMat;
+	private JLabel lblIdfromulario;  
+	private JLabel lblCodMat;
+	private JLabel lblNombreDocente;
+	private JLabel lblNomMat;
+	
 	public ActualizarFormulario() {
 		setBorder(null);
-		setBounds(100, 100, 801, 573);
+		setBounds(100, 100, 800, 573);
 		getContentPane().setLayout(null);
 		
 		JPanel panel = new JPanel();
-		panel.setBounds(10, 11, 778, 146);
+		panel.setBounds(10, 11, 770, 146);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Nombre materia");
-		lblNewLabel.setBounds(10, 11, 98, 14);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel.setBounds(10, 11, 124, 14);
 		panel.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(144, 11, 46, 14);
-		panel.add(lblNewLabel_1);
+		lblNomMat = new JLabel("New label");
+		lblNomMat.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNomMat.setBounds(144, 11, 157, 14);
+		panel.add(lblNomMat);
 		
 		JLabel lblNewLabel_2 = new JLabel("Semestre");
-		lblNewLabel_2.setBounds(10, 56, 46, 14);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_2.setBounds(10, 56, 88, 14);
 		panel.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("I");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNewLabel_3.setBounds(144, 56, 46, 14);
 		panel.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("Nombre docente");
-		lblNewLabel_4.setBounds(378, 11, 90, 14);
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_4.setBounds(378, 11, 120, 14);
 		panel.add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_5 = new JLabel("New label");
-		lblNewLabel_5.setBounds(508, 11, 46, 14);
-		panel.add(lblNewLabel_5);
+		lblNombreDocente = new JLabel("New label");
+		lblNombreDocente.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNombreDocente.setBounds(508, 11, 149, 14);
+		panel.add(lblNombreDocente);
 		
-		JLabel lblNewLabel_6 = new JLabel("Codigo docente");
-		lblNewLabel_6.setBounds(378, 56, 90, 14);
+		JLabel lblNewLabel_6 = new JLabel("Codigo materia");
+		lblNewLabel_6.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblNewLabel_6.setBounds(378, 56, 120, 14);
 		panel.add(lblNewLabel_6);
 		
-		JLabel lblNewLabel_7 = new JLabel("New label");
-		lblNewLabel_7.setBounds(508, 56, 46, 14);
-		panel.add(lblNewLabel_7);
+		lblCodMat = new JLabel("New label");
+		lblCodMat.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lblCodMat.setBounds(508, 56, 149, 14);
+		panel.add(lblCodMat);
 		
 		JLabel lblNewLabel_8 = new JLabel("Gestion");
+		lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNewLabel_8.setBounds(10, 105, 46, 14);
 		panel.add(lblNewLabel_8);
 		
 		JLabel lblNewLabel_9 = new JLabel("2015");
+		lblNewLabel_9.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lblNewLabel_9.setBounds(144, 105, 46, 14);
 		panel.add(lblNewLabel_9);
 		
+		lblidMat = new JLabel("id materia");
+		lblidMat.setBounds(235, 121, 66, 14);
+		panel.add(lblidMat);
+		
+		
+		
+		lblIdfromulario = new JLabel("idFromulario");
+		lblIdfromulario.setBounds(306, 121, 82, 14);
+		panel.add(lblIdfromulario);
+		
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(10, 168, 780, 379);
+		panel_1.setBounds(10, 168, 740, 379);
 		getContentPane().add(panel_1);
 		panel_1.setLayout(new BoxLayout(panel_1, BoxLayout.X_AXIS));
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 158, 780, 447);
+		scrollPane.setBounds(10, 158, 760, 447);
 		
 		
 		table = new JTable();
@@ -98,10 +125,11 @@ public class ActualizarFormulario extends JInternalFrame {
 		
 		tamCelda();
 		quitarBarraTitulo();
+		table.setFont(new java.awt.Font("Tahoma", 0, 15));;
 	}
 	
 	private void tamCelda(){
-		int[] tamCel = {0, 190, 120, 120, 50, 50, 50, 70, 100}; 
+		int[] tamCel = {0, 190, 120, 120, 50, 50, 50, 70, 90}; 
 		
 		for (int i = 0; i < table.getColumnCount(); i++) {
 			table.getColumnModel().getColumn(i).setMaxWidth(tamCel[i]);
@@ -120,8 +148,8 @@ public class ActualizarFormulario extends JInternalFrame {
 		repaint(); 
 	}
 		
-	public void datosFormulario(int idMateria, int idDocente){
-		DAL.Formulario formulario = BRL.FormularioBRL.recuperarDatosActualizar(idDocente, idMateria);
+	public void datosFormulario(int idMateria, int idDocente, String nomMat, String codMat, int idMat){
+		DAL.Formulario formulario = BRL.FormularioBRL.RecuperarDatosActualizar(idMateria, idDocente);
 		
 		DAL.TModel modelo = (DAL.TModel) table.getModel();
 		
@@ -135,6 +163,13 @@ public class ActualizarFormulario extends JInternalFrame {
 			}
 		
 		}
+		
+		//datos de los labels
+		lblidMat.setText(idMat+"");
+		lblIdfromulario.setText(formulario.getId()+"");  
+		lblCodMat.setText(codMat);
+		lblNombreDocente.setText(Main.Main.getNombre());		
+		lblNomMat.setText(nomMat);
+		
 	}
-	
 }

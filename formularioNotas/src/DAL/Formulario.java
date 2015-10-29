@@ -107,14 +107,14 @@ public class Formulario {
 	}
 	
 	
-	public static Formulario recuperarDatosActualizar(int idDoc, int idMat){
+	public static Formulario recuperarDatosActualizar(int idMat, int idDoc){
 		
 		Formulario dev = new Formulario();
 		
 		Conextion con = Conextion.getConexion();
 		
-		String consulta = "SELECT * "
-				+ "FROM formularionotas "
+		String consulta = "SELECT idFormulario, notaMaxima, notaMinima, MateriaDocente_Asingantura_idAsignatura, MateriaDocente_Docente_idDocente"
+				+ " FROM formularionotas "
 				+ "WHERE MateriaDocente_Asingantura_idAsignatura = "+idMat+" and MateriaDocente_Docente_idDocente = "+ idDoc ;
 		
 		con.setConsulta(consulta);
@@ -122,19 +122,19 @@ public class Formulario {
         con.consultar();
         
         try {
-			while (con.getListaResultado().first()) {
+			while (con.getListaResultado().next()) {
 					
 		    	dev.setId(con.getListaResultado().getInt("idFormulario"));
-		    	dev.setIdDocente(con.getListaResultado().getInt("MateriaDocente_Docente_idDocente"));
-		    	dev.setIdMateria(con.getListaResultado().getInt("MateriaDocente_Asingantura_idAsignatura"));
 		    	dev.setNotaMax(con.getListaResultado().getInt("notaMaxima"));
 		    	dev.setNotaMin(con.getListaResultado().getInt("notaMinima"));
+		    	dev.setIdMateria(con.getListaResultado().getInt("MateriaDocente_Asingantura_idAsignatura"));
+		    	dev.setIdDocente(con.getListaResultado().getInt("MateriaDocente_Docente_idDocente"));
 					
 				consulta = "SELECT e.idEstudiante, e.nombre, e.apPat, e.apMat, dfs.parcialUno, dfs.parcialDos, dfs.parcialTres "
 						+ "FROM formularionotas as fn, detalleformulariosimple as dfs, estudiante as e "
 						+ "WHERE dfs.FormularioNotas_idFormulario = fn.idFormulario "
 						+ "and dfs.MateriaAlumno_Estudiante_idEstudiante = e.idEstudiante "
-						+ "and dfs.FormularioNotas_idFormulario = "+ dev.getId()+ ""
+						+ "and dfs.FormularioNotas_idFormulario = "+ dev.getId()+ " "
 						+ "and dfs.MateriaAlumno_Asingantura_idAsignatura = "+dev.getIdMateria()+" ORDER BY e.apPat ";
 						
 				con.setConsulta(consulta);
