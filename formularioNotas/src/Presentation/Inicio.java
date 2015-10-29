@@ -146,7 +146,7 @@ public class Inicio {
 			
 		});
 		
-		lblNomUsuario = new JLabel("New label");
+		lblNomUsuario = new JLabel(Main.Main.getNombre()+"  ");
 		menuBar.add(lblNomUsuario);
 		btnSalir.setIcon(new ImageIcon(Inicio.class.getResource("/Imagenes/user_black.png")));
 		menuBar.add(btnSalir);
@@ -186,18 +186,9 @@ public class Inicio {
 	{
 		DAL.Docente infDocente = BRL.DocenteBRL.InformacionDocente(id);
 		
-		//lblNomUsuario.setText(infDocente.getNombre() + "  ");
-		
-		//Main.Main.setIdDocente(infDocente.getId());
-				
 		if (infDocente.getUsuario().getCargo().compareTo("Administrador") == 0)
 			mntmNuevoUsuario.setEnabled(true);
-		//se deshabilita la opcion de crear usuario
-		
-		//nombreUsuario(infDocente.getNombre());
-		
-		//nombreUsuario(materia);
-		
+
 		opInicio.comBoxMateriasIngreso(infDocente.getMaterias());
 		opInicio.cmBoxMatFormulario(BRL.DocenteBRL.MateriaFormulario(id));
 	}

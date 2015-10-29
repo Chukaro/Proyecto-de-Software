@@ -105,4 +105,61 @@ public class Formulario {
 		}	
 		
 	}
+	
+	public static Formulario datosActualizar(int idDoc, int idMat){
+		
+		Formulario dev = new Formulario();
+		
+		Conextion con = Conextion.getConexion();
+		
+		String consulta = "SELECT * "
+				+ "FROM formularionotas "
+				+ "WHERE MateriaDocente_Asingantura_idAsignatura = "+idMat+" and MateriaDocente_Docente_idDocente = "+ idDoc ;
+		
+		con.setConsulta(consulta);
+		
+        con.consultar();
+        
+        try {
+			while (con.getListaResultado().first()) {
+					
+		    	dev.setId(con.getListaResultado().getInt("idFormulario"));
+		    	dev.setIdDocente(con.getListaResultado().getInt("MateriaDocente_Docente_idDocente"));
+		    	dev.setIdMateria(con.getListaResultado().getInt("MateriaDocente_Asingantura_idAsignatura"));
+		    	dev.setNotaMax(con.getListaResultado().getInt("notaMaxima"));
+		    	dev.setNotaMin(con.getListaResultado().getInt("notaMinima"));
+					
+				consulta = "SELECT e.idEstudiante, e.nombre, e.apPat, e.apMat, dfs.parcialUno, dfs.parcialDos, dfs.parcialTres "
+						+ "FROM formularionotas as fn, detalleformulariosimple as dfs, estudiante as e "
+						+ "WHERE dfs.FormularioNotas_idFormulario = fn.idFormulario "
+						+ "and dfs.MateriaAlumno_Estudiante_idEstudiante = e.idEstudiante "
+						+ "and dfs.FormularioNotas_idFormulario = 1 "
+						+ "and dfs.MateriaAlumno_Asingantura_idAsignatura = 1 "
+						+ "ORDER BY e.apPat ";
+						
+				con.setConsulta(consulta);
+						
+				con.consultar();
+				while (con.getListaResultado().next()) {
+					DetalleFormularioSimple detalle = new DetalleFormularioSimple();
+					
+					detalle.getEstudiante().setCodEst(con.getListaResultado().getInt("idEstudiante"));
+					detalle.getEstudiante().setNombre(con.getListaResultado().getString("nombre"));
+					detalle.getEstudiante().setMaterno(con.getListaResultado().getString("apMat"));
+					detalle.getEstudiante().setPaterno(con.getListaResultado().getString("apPat"));
+					
+					detalle.setNota1(con.getListaResultado().getInt("parcialUno"));
+					detalle.setNota2(con.getListaResultado().getInt("parcialDos"));
+					detalle.setNota3(con.getListaResultado().getInt("ParcialTres"));
+					
+					dev.setSimpel(detalle);
+				}
+			}
+		}  catch (SQLException e) {
+			e.printStackTrace();
+		}
+        
+        return dev;
+	}
+		
 }

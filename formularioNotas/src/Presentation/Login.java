@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import java.awt.Color;
@@ -63,23 +64,24 @@ public class Login {
 				char[] pass = txtPassword.getPassword();
 				String pass1 = new String(pass);
 				
+				String[] datos = BRL.UsuarioBRL.VerficaUser(usuario, pass1);
+				try{
+					Main.Main.setIdDocente(Integer.parseInt(datos[0]));
+					Main.Main.setNombre(datos[1]);
 				
-				
-				Main.Main.setIdDocente(BRL.UsuarioBRL.VerficaUser(usuario, pass1));
-				//aqui se modifico para utilizar programacion por capas BRL - DAL
-				if(Main.Main.getIdDocente() > 0){
-						
+					//aqui se modifico para utilizar programacion por capas BRL - DAL
+					
 					Inicio ventana = new Inicio();
-									
+							
 					//ventana.datosDocente(idDocente);
 					ventana.getFrame().setVisible(true);
 					frmSaagaf.setVisible(false);
+					
 				}
-				else{
-					JOptionPane.showMessageDialog(null, "Error de Usuario", "ERROR DE SESION", JOptionPane.ERROR_MESSAGE);
+				catch(Exception ex){
+					JOptionPane.showMessageDialog(null, "Error no existe usuario", "ERROR DE SESION", JOptionPane.ERROR_MESSAGE);
 				}
-				
-				
+			
 			}
 		});
 		btnIngreso.setBounds(58, 134, 118, 33);

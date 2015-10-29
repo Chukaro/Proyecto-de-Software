@@ -57,7 +57,7 @@ public class OpcionesInicio extends JInternalFrame {
 					
 					simple.reshape(0, 0, 780, 590);
 					
-					Inicio.contenedor.reshape(0, 0, 780, 5590);
+					Inicio.contenedor.reshape(0, 0, 780, 590);
 					Inicio.contenedor.add(simple);
 										
 					simple.toFront();
@@ -131,6 +131,23 @@ public class OpcionesInicio extends JInternalFrame {
 		panel_3.add(cmBoxModificar);
 		
 		JButton btnModificar = new JButton("Modificar formulario");
+		btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				ActualizarFormulario actual = new ActualizarFormulario();
+				
+				actual.reshape(0, 0, 780, 590);
+				
+				Inicio.contenedor.reshape(0, 0, 780, 590);
+				Inicio.contenedor.add(actual);
+									
+				actual.toFront();
+				
+				actual.setVisible(true);
+				//Inicio.contenedor.repaint();
+				
+				Inicio.frame.setBounds(0, 0, 780, 590);
+			}
+		});
 		btnModificar.setBounds(233, 37, 150, 23);
 		panel_3.add(btnModificar);
 
@@ -148,6 +165,7 @@ public class OpcionesInicio extends JInternalFrame {
 	
 	public void comBoxMateriasIngreso(List<DAL.Asignatura> materias)
 	{   
+		comBoxMaterias.removeAllItems();
 		if(materias.size() !=0)
 		{
 			for (int i = 0; i < materias.size(); i++) {
@@ -158,6 +176,7 @@ public class OpcionesInicio extends JInternalFrame {
 	
 	public void cmBoxMatFormulario(List<DAL.Asignatura> materias)
 	{   
+		cmBoxModificar.removeAllItems();
 		if(materias.size() !=0)
 		{
 			for (int i = 0; i < materias.size(); i++) {
@@ -165,5 +184,5 @@ public class OpcionesInicio extends JInternalFrame {
 			}
 		}
 	}
-
+	
 }

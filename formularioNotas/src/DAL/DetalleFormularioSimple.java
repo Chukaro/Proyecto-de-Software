@@ -9,8 +9,14 @@ public class DetalleFormularioSimple {
 	private int idFormulario;
 	private int idEstudiante;
 	private int idMateria;
+	private String nomEst;
+	private Estudiante estudiante;
 	
-	public DetalleFormularioSimple(){}
+	public Estudiante getEstudiante() {
+		return estudiante;
+	}
+
+	
 	
 	public DetalleFormularioSimple(int idEstudiante, int nota1, int nota2, int nota3, int idMateria) {
 		this.nota1 = nota1;
@@ -20,7 +26,13 @@ public class DetalleFormularioSimple {
 		this.idMateria = idMateria;
 	}
 
+    public String getNomEst() {
+		return nomEst;
+	}
 
+	public void setNomEst(String nomEst) {
+		this.nomEst = nomEst;
+	}
 
 	public int getIdDetFormulario() {
 		return idDetFormulario;
@@ -69,5 +81,12 @@ public class DetalleFormularioSimple {
 	}
 	public void setIdMateria(int idMateria) {
 		this.idMateria = idMateria;
+	}
+	
+	public void setEstudiante(Estudiante estudiante) {
+		this.estudiante = estudiante;
+	}
+	public DetalleFormularioSimple(){
+		estudiante = new Estudiante();
 	}
 }

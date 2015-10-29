@@ -2,7 +2,7 @@ package BRL;
 
 public class UsuarioBRL {
 	
-	public static int VerficaUser(String nom, String pass){
+	public static String[] VerficaUser(String nom, String pass){
 		return DAL.Usuario.verificaUser(nom, pass);
 	}
 	

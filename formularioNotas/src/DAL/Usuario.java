@@ -34,26 +34,30 @@ public class Usuario {
 		this.cargo = cargo;
 	}
 	
-	public static int verificaUser(String usuario, String pass){
+	public static String[] verificaUser(String usuario, String pass){
 		
 		Conextion con = Conextion.getConexion();
 				
-		int idDocente = 0;
+		String[] datos = new String[2];
 		
-		String consulta = "select Docente_idDocente from usuario where usuario = '"+usuario+"' and password = '"+pass+"'";
+		String consulta = "select u.Docente_idDocente, CONCAT(d.nombre,' ',d.apPat) as nombre "
+				+ "from usuario as u, docente as d "
+				+ "where d.idDocente = u.Docente_idDocente and usuario = '"+usuario+"' and password = '"+pass+"'";
 		con.setConsulta(consulta);
 		con.consultar();
 		
 		try {
 			while(con.getListaResultado().next())
 			{
-				idDocente = con.getListaResultado().getInt("Docente_idDocente");
+				
+				datos[0] = con.getListaResultado().getInt("Docente_idDocente") + "";
+				datos[1] = con.getListaResultado().getString("nombre");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 				
-		return idDocente;
+		return datos;
 	}
 	
 	public static boolean existeNombreUsuario(String usuario)
