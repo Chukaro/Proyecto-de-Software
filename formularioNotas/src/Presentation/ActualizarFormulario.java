@@ -8,10 +8,17 @@ import javax.swing.JInternalFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.table.TableModel;
+
+import DAL.Formulario;
+
 import javax.swing.BoxLayout;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import java.awt.Font;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class ActualizarFormulario extends JInternalFrame {
 
@@ -101,6 +108,38 @@ public class ActualizarFormulario extends JInternalFrame {
 		lblIdfromulario = new JLabel("idFromulario");
 		lblIdfromulario.setBounds(306, 121, 82, 14);
 		panel.add(lblIdfromulario);
+		
+		JButton btnActualizar = new JButton("Actualizar Formulario");
+		btnActualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				//enviar un formulario para guardar los datos del formulario
+				DAL.Formulario guardar = new Formulario();
+				
+				guardar.setId(Integer.parseInt(lblIdfromulario.getText()));
+				guardar.setIdMateria(Integer.parseInt(lblidMat.getText()));
+				
+				TableModel valores = table.getModel();
+
+                int cols = valores.getColumnCount();
+                int fils = valores.getRowCount();
+
+                for (int i = 0; i < fils; i++) {
+                	
+                	Object[] fila = new Object[cols]; 
+                    for (int j = 0; j < cols; j++) {
+
+                        fila[j] = valores.getValueAt(i, j);
+                    }
+                                      
+                    guardar.setSimpel(new DAL.DetalleFormularioSimple((int)fila[0], (int)fila[4], (int)fila[5], (int)fila[6], guardar.getIdMateria()));
+                }
+                
+                BRL.FormularioBRL.ActualizarDatosFormularioSimple(guardar);
+                
+			}
+		});
+		btnActualizar.setBounds(573, 117, 142, 23);
+		panel.add(btnActualizar);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(10, 168, 740, 379);

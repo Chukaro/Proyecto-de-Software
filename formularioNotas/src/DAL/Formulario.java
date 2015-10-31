@@ -143,7 +143,7 @@ public class Formulario {
 				while (con.getListaResultado().next()) {
 					DetalleFormularioSimple detalle = new DetalleFormularioSimple();
 					
-					detalle.getEstudiante().setCodEst(con.getListaResultado().getInt("idEstudiante"));
+					detalle.getEstudiante().setId(con.getListaResultado().getInt("idEstudiante"));
 					detalle.getEstudiante().setNombre(con.getListaResultado().getString("nombre"));
 					detalle.getEstudiante().setMaterno(con.getListaResultado().getString("apMat"));
 					detalle.getEstudiante().setPaterno(con.getListaResultado().getString("apPat"));
@@ -161,5 +161,25 @@ public class Formulario {
         
         return dev;
 	}
+	
+	public static void actualizarDatosFormularioSimple(Formulario actualizar){
 		
+		String consulta = "";
+		Conextion con = Conextion.getConexion();
+				
+		for( DetalleFormularioSimple item : actualizar.getSimple() ){
+			
+			consulta = "UPDATE detalleformulariosimple "
+					+ "SET parcialUno = "+item.getNota1()+", parcialDos = "+item.getNota2()+", parcialTres = "+item.getNota3()+" "
+					+ "WHERE FormularioNotas_idFormulario = "+actualizar.getId()+" "
+					+ "AND MateriaAlumno_Estudiante_idEstudiante = "+item.getIdEstudiante()+" "
+					+ "AND MateriaAlumno_Asingantura_idAsignatura = "+actualizar.getIdMateria()+"";
+			
+			con.setConsulta(consulta);
+			
+	        con.ejecutar();
+		}
+
+	}
+
 }
