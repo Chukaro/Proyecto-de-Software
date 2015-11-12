@@ -62,6 +62,7 @@ public class Login {
 				String usuario = txtUsuario.getText();
 				//asi se recupera el campo text password
 				char[] pass = txtPassword.getPassword();
+				
 				String pass1 = new String(pass);
 				
 				String[] datos = BRL.UsuarioBRL.VerficaUser(usuario, pass1);

@@ -63,13 +63,13 @@ public class Inicio {
 		contenedor.setBounds(0, 0, 750, 332);
 		frame.getContentPane().add(contenedor);
 		
-		opcionesPrincipal();
+		
 		
 		menuBar = new JMenuBar();
 		menuBar.setBorderPainted(false);
 		frame.setJMenuBar(menuBar);
 		
-		
+		//datosDocente(Main.Main.getIdDocente());
 		
 		JMenu mnFormulario = new JMenu("Formulario");
 		mnFormulario.setFont(new Font("Segoe UI", Font.ITALIC, 12));
@@ -80,7 +80,8 @@ public class Inicio {
 		JMenuItem mntmInicio = new JMenuItem("Inicio");
 		mntmInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				opcionesPrincipal();
+				//opcionesPrincipal();
+				//datosDocente(Main.Main.getIdDocente());
 			}
 		});
 		
@@ -156,7 +157,7 @@ public class Inicio {
 	
 	public void opcionesPrincipal()
 	{
-		datosDocente(Main.Main.getIdDocente());
+		//datosDocente(Main.Main.getIdDocente());
 		//se ingresa el JInternalFrame
 		opInicio.reshape(0, 0, 800, 365);
 		//opInicio.reshape(0, 0, 1200, 600);
@@ -186,10 +187,14 @@ public class Inicio {
 	{
 		DAL.Docente infDocente = BRL.DocenteBRL.InformacionDocente(id);
 		
-		if (infDocente.getUsuario().getCargo().compareTo("Administrador") == 0)
+		if (infDocente.getUsuario().getCargo().compareTo("Administrador") == 0){
 			mntmNuevoUsuario.setEnabled(true);
-
-		opInicio.comBoxMateriasIngreso(infDocente.getMaterias());
-		opInicio.cmBoxMatFormulario(BRL.DocenteBRL.MateriaFormulario(id));
+		}
+		else{//se modifico esto para el administrador prueba
+			opInicio.comBoxMateriasIngreso(infDocente.getMaterias());
+			opInicio.cmBoxMatFormulario(BRL.DocenteBRL.MateriaFormulario(id));
+			opcionesPrincipal();
+		}
+		
 	}
 }

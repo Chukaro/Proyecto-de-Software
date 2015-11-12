@@ -47,9 +47,8 @@ public class Usuario {
 		con.consultar();
 		
 		try {
-			while(con.getListaResultado().next())
+			if(con.getListaResultado().last())
 			{
-				
 				datos[0] = con.getListaResultado().getInt("Docente_idDocente") + "";
 				datos[1] = con.getListaResultado().getString("nombre");
 			}

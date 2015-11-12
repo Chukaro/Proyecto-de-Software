@@ -77,7 +77,9 @@ public class Docente extends Persona{
 		
 		Conextion con = Conextion.getConexion();
 		
-		String consulta = "SELECT idDocente, CONCAT(d.nombre,' ',d.apPat) AS nombre, u.cargo FROM docente as d, usuario as u WHERE u.Docente_idDocente = d.idDocente and d.idDocente = "+ idDoc;
+		String consulta = "SELECT d.idDocente, CONCAT(d.nombre,' ',d.apPat) AS nombre, u.cargo "
+				+ "FROM docente as d, usuario as u "
+				+ "WHERE u.Docente_idDocente = d.idDocente and d.idDocente = "+ idDoc;
 		con.setConsulta(consulta);
 		con.consultar();
 		
