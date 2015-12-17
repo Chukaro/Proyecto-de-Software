@@ -81,7 +81,7 @@ public class Inicio {
 		mntmInicio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				//opcionesPrincipal();
-				//datosDocente(Main.Main.getIdDocente());
+				datosDocente(Main.Main.getIdDocente());
 			}
 		});
 		

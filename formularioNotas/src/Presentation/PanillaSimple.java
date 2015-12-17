@@ -1,5 +1,4 @@
-                                                                                                    package Presentation;
-
+package Presentation;
 import java.awt.Dimension;
 import java.util.List;
 import javax.swing.JComponent;
@@ -32,7 +31,10 @@ public class PanillaSimple extends JInternalFrame {
 	private JLabel lblCodAsig;
 	private JLabel lblIdMat;
 	
+	
+	
 	public PanillaSimple() {
+		
 		getContentPane().setBackground(SystemColor.inactiveCaptionBorder);
 		setBorder(null);
 		setResizable(false);
@@ -65,6 +67,8 @@ public class PanillaSimple extends JInternalFrame {
 		lblGes = new JLabel("2015");
 		lblGes.setBounds(406, 75, 89, 14);
 		
+		
+		
 		JLabel lblNewLabel_6 = new JLabel("");
 		lblNewLabel_6.setBounds(600, 11, 177, 61);
 		lblNewLabel_6.setIcon(new ImageIcon("C:\\Users\\MIGUEL\\git\\Proyecto-de-Software\\Proyecto-de-Software\\Proyecto-de-Software\\Proyecto-de-Software\\formularioNotas\\src\\Imagenes\\logocrg.gif"));
@@ -77,7 +81,7 @@ public class PanillaSimple extends JInternalFrame {
 				"N\u00BA", "Nombre", "Paterno", "Materno", "Nota 1", "Nota 2", "Nota 3", "Promedio", "Observacion"
 			}
 		));
-		
+
 		table.getModel().addTableModelListener( new DAL.TModelListener() );
 		
 		JLabel lblCodigo = new JLabel("Codigo materia");
@@ -107,7 +111,7 @@ public class PanillaSimple extends JInternalFrame {
 
                 for (int i = 0; i < fils; i++) {
                 	
-                	Object[] fila = new Object[cols]; 
+                	Object[] fila = new Object[cols];
                     for (int j = 0; j < cols; j++) {
 
                         fila[j] = valores.getValueAt(i, j);

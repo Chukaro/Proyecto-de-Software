@@ -82,7 +82,41 @@ public class OpcionesInicio extends JInternalFrame {
 		JButton btnAvanzado = new JButton("Formulario Avanzado");
 		btnAvanzado.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				PlanillaAvanzada avanzada = new PlanillaAvanzada();
+				//avanzada.reshape(0, 0, 780, 590);
 				
+				//Inicio.contenedor.reshape(0, 0, 780, 590);
+				//Inicio.contenedor.add(avanzada);
+									
+				//avanzada.toFront();
+				
+				//avanzada.setVisible(true);
+				//
+				DAL.Asignatura dato = (DAL.Asignatura)comBoxMaterias.getSelectedItem();
+				
+				int id = dato.getIdAsignatura();
+				String cod = dato.getCodAsignatura();
+				String mom = dato.getNombre();
+				
+				if (id > 0 && mom.length() > 0) {
+					avanzada.datosLabelComplicada(Inicio.lblNomUsuario.getText(), mom, cod, id);
+					avanzada.datosTablaComplicada(id);
+					
+					avanzada.reshape(0, 0, 780, 590);
+					
+					Inicio.contenedor.reshape(0, 0, 780, 590);
+					Inicio.contenedor.add(avanzada);
+										
+					avanzada.toFront();
+					
+					avanzada.setVisible(true);
+					//Inicio.contenedor.repaint();
+					
+					Inicio.frame.setBounds(0, 0, 780, 590);
+				} 
+				else {
+					JOptionPane.showMessageDialog(null, "Materias no asignadas", "Error", JOptionPane.ERROR_MESSAGE);
+				}
 			}
 		});
 		btnAvanzado.setFont(new Font("Tahoma", Font.PLAIN, 14));
